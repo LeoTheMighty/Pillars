@@ -11,6 +11,8 @@ reason, Pillars is essentially a long-term goal chooser and tracker that shows u
 The name "Pillars" comes from an idea that we all have implicit pillars or staples of our day that make us feel like the
 day was more fulfilling. For example, wanting to be active every day, maintaining a strict diet every day, or
 abstaining from bad habits every day. This is something that I have been keeping track in my life already that I simply 
-thought that an application would help smooth the process over for.
+thought that an application would help smooth the process over for. This application will simply ask every day whether 
+or not you have accomplished these pillars and then show you the statistics over long stretches of time how you've done.
+
 
 
