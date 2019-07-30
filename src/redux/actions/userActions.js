@@ -1,0 +1,64 @@
+import {ADD_PILLAR, EDIT_PILLAR, LOAD_USER, REMOVE_PILLAR, SAVE_USER} from '../reducers/userReducer';
+// For all the actions regarding the actual user using the app. (Will be used to access cloud storage of the User's
+// progress and whatnot). May use API calls to retrieve info.
+
+import UserStorage from "../../api/UserStorage";
+import {newUser} from "../../logic/PillarsUserHelper";
+
+export const updateUser = (successHandler) => {
+  return (dispatch, getStore) => {
+    let user = UserStorage.loadUser();
+    if (!user) {
+      alert("Generating new user!");
+      user = newUser();
+      UserStorage.saveUser(user);
+
+      // TODO Start up flow state!
+
+    }
+    dispatch(loadUser(user));
+    successHandler&&successHandler();
+  };
+};
+
+// Save
+
+// Load
+
+// Edit (in different ways)
+
+// Low Level Redux Actions
+
+const loadUser = (user) => ({
+  type: LOAD_USER,
+  payload: {
+    user,
+  },
+});
+
+const saveUser = () => ({
+  type: SAVE_USER,
+});
+
+const addPillar = (index, pillar) => ({
+  type: ADD_PILLAR,
+  payload: {
+    index,
+    pillar
+  },
+});
+
+const editPillar = (index, pillar) => ({
+  type: EDIT_PILLAR,
+  payload: {
+    index,
+    pillar,
+  },
+});
+
+const removePillar = (index) => ({
+  type: REMOVE_PILLAR,
+  payload: {
+    index,
+  },
+});

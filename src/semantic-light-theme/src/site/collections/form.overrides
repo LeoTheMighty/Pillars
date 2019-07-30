@@ -1,0 +1,11 @@
+/*******************************
+         Site Overrides
+*******************************/
+
+@media only screen and (max-width: 767px) {
+  .ui.form .fields {
+    margin-bottom: 1em;
+    background: white;
+    color: purple;
+  }
+}

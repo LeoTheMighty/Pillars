@@ -1,0 +1,149 @@
+import type PillarsUser from "../../types/PillarsUser";
+import {err} from "../../Constants";
+
+// Action Type Constants ---------------------------------------------------------
+export const LOAD_USER =     'LOAD_USER';
+export const SAVE_USER =     'SAVE_USER';
+export const ADD_PILLAR =    'ADD_PILLAR';
+export const EDIT_PILLAR =   'EDIT_PILLAR';
+export const REMOVE_PILLAR = 'REMOVE_PILLAR';
+
+/**
+ * The type definition for the User redux reducer.
+ */
+type UserReducer = {
+  user: PillarsUser,
+  unsavedChanges: boolean,
+};
+
+/**
+ * The Initial State for the User Reducer
+ *
+ * @type {UserReducer}
+ */
+const initialState = {
+  user: null,
+  unsavedChanges: false,
+};
+
+/**
+ * Deeply copies the User Reducer state. TODO
+ *
+ * @param {UserReducer} state The previous state to copy.
+ */
+const copyState = (state) => {
+  return {...state};
+};
+
+/**
+ * User Reducer:
+ *
+ * This reducer handles all the user level states of the app. This includes personal info and history.
+ *
+ * @param {UserReducer} state The current state of the user reducer.
+ * @param {{type: string, payload: *}} action The action to specify how to update the reducer.
+ * @return {UserReducer} The next state for the reducer.
+ */
+export default (state: UserReducer = initialState, action) => {
+  switch (action.type) {
+    case LOAD_USER:
+      state = loadUser(state, action.payload.user);
+      break;
+    case SAVE_USER:
+      state = saveUser(state);
+      break;
+    case ADD_PILLAR:
+      state = addPillar(state, action.payload.index, action.payload.pillar);
+      break;
+    case EDIT_PILLAR:
+      state = editPillar(state, action.payload.index, action.payload.pillar);
+      break;
+    case REMOVE_PILLAR:
+      state = removePillar(state, action.payload.index);
+      break;
+    default: break;
+  }
+  return state;
+}
+
+/**
+ * Loads the User into the reducer. Doesn't throw an error if has unsaved changes, but puts an error statement.
+ *
+ * @param {UserReducer} state The current state of the user reducer.
+ * @param {PillarsUser} user The user to load into the reducer.
+ * @return {UserReducer} The changed state of the user reducer.
+ */
+const loadUser = (state, user) => {
+  state = copyState(state);
+  if (state.unsavedChanges) {
+    err&&console.error("OVERWRITING UNSAVED CHANGES!?!?!?!");
+  }
+  state.user = user;
+  return state;
+};
+
+/**
+ * Indicates that the user has been saved and
+ *
+ * @param {UserReducer} state The current state of the user reducer.
+ * @return {UserReducer} The changed state of the user reducer.
+ */
+const saveUser = (state) => {
+  state = copyState(state);
+  state.unsavedChanges = false;
+  return state;
+};
+
+/**
+ * Adds a new pillar to an index for the user.
+ *
+ * @param {UserReducer} state The current state of the user reducer.
+ * @param {number} index The index to make for the new pillar, pushing the current index up one.
+ * @param {Pillar} pillar The pillar to add to the user.
+ * @return {UserReducer} The changed state of the user reducer.
+ */
+const addPillar = (state, index, pillar) => {
+  state = copyState(state);
+  if (index > state.user.pillars.length) {
+    throw new Error("Attempting to add a pillar to an invalid index!");
+  }
+  // Add the pillar into the pillars array
+  state.user.pillars.splice(index, 0, pillar);
+  state.unsavedChanges = true;
+  return state;
+};
+
+/**
+ * Sets a pillar at a certain index for the user.
+ *
+ * @param {UserReducer} state The current state of the user reducer.
+ * @param {number} index The index of the pillars list to edit for the user.
+ * @param {Pillar} pillar The pillar object to set for the user.
+ * @return {UserReducer} The changed state of the user reducer.
+ */
+const editPillar = (state, index, pillar) => {
+  state = copyState(state);
+  if (index >= state.user.pillars.length) {
+    throw new Error("Attempting to edit a non-existant pillar!");
+  }
+  state.user.pillars[index] = pillar;
+  state.unsavedChanges = true;
+  return state;
+};
+
+/**
+ * Removes a pillar from the user's pillars list.
+ *
+ * @param {UserReducer} state The current state of the user reducer.
+ * @param {number} index The index of the pillars list to remove from the user.
+ * @return {UserReducer} The changed state of the user reducer.
+ */
+const removePillar = (state, index) => {
+  state = copyState(state);
+  if (index >= state.user.pillars.length) {
+    throw new Error("Attempting to remove a non-existant pillar!");
+  }
+  state.user.pillars.splice(index, 1);
+  state.unsavedChanges = true;
+  return state;
+};
