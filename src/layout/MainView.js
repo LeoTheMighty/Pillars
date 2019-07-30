@@ -1,15 +1,16 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
-import {Container} from 'semantic-ui-react';
+import {Container, Menu} from 'semantic-ui-react';
 import AllPillarsView from '../components/AllPillarsView';
 
 const MainView = (props) => {
   return (
     <div>
       <Menu>
-      <Container fluid>
-        <AllPillarsView pillars={props.user.user.pillars}/>
-      </Container>
+        <Container fluid>
+          <AllPillarsView pillars={props.user.user.pillars}/>
+        </Container>
+      </Menu>
     </div>
   );
 };

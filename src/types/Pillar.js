@@ -5,10 +5,13 @@ import type PillarSubmission from "./PillarSubmission";
  * achievement as well.
  */
 type Pillar = {
-  index: number,
+  /** The name of the Pillar to work toward. */
   name: string,
+  /** The color of the Pillar to display. */
   color: string,
+  /** The special type of the Pillar, to handle differently in submissions/details. */
   type: string,
+  /** The array of historical submissions done for the pillar. */
   submissions: [PillarSubmission],
 }
 
