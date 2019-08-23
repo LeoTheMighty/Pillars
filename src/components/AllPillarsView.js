@@ -1,27 +1,28 @@
 import React from 'react';
-import {Grid, Button, Message} from "semantic-ui-react";
+import {Container, Grid, Message} from "semantic-ui-react";
 import _ from "lodash";
-import {Rectangle} from "react-shapes";
 import type Pillar from "../types/Pillar";
+import PillarView from "./PillarView";
 
 type Props = {
-  pillars: [Pillar]
+  pillars: [Pillar],
+  intervalView: string,
 };
 
+/**
+ * Shows all the pillars for the User.
+ */
 const AllPillarsView = (props: Props) => {
   return (
-    props.pillars.length > 0 ?
-      <Grid columns={props.pillars.length} stretched style={{color: 'purple'}}>
-        {_.times(props.pillars.length, i => [
-          <Grid.Column key={2 * i}>
-            {"Value: " + props.pillars[i].value}
-          </Grid.Column>,
-          <Grid.Column key={2 * i + 1} style={{color: props.pillars[i].color}}>
-            {"Color: " + props.pillars[i].color}
+    <Grid stretched columns={props.pillars.length} style={{marginRight: "5px", marginLeft: "5px"}}>
+      {props.pillars.length > 0 ?
+        _.times(props.pillars.length, i => (
+          <Grid.Column key={i}>
+            <PillarView pillar={props.pillars[i]} intervalView={props.intervalView}/>
           </Grid.Column>
-        ])}
-      </Grid> :
-      <Message> No Pillars Yet! </Message>
+        )) :
+      <Message> No Pillars Yet! </Message>}
+    </Grid>
   );
 };
 

@@ -50,6 +50,7 @@ export const isSubmitted = (pillar) => {
  * @return {number} Returns a percentage from 0 - 100 about the current value of the pillar.
  */
 export const getCurrentPillarValue = (pillar, interval, duration) => {
+
   switch (interval) {
     case "day":
       break;

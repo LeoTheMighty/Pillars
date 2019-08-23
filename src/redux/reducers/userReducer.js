@@ -1,12 +1,7 @@
 import type PillarsUser from "../../types/PillarsUser";
 import {err} from "../../Constants";
-
-// Action Type Constants ---------------------------------------------------------
-export const LOAD_USER =     'LOAD_USER';
-export const SAVE_USER =     'SAVE_USER';
-export const ADD_PILLAR =    'ADD_PILLAR';
-export const EDIT_PILLAR =   'EDIT_PILLAR';
-export const REMOVE_PILLAR = 'REMOVE_PILLAR';
+import {LOAD_USER, SAVE_USER, ADD_PILLAR, EDIT_PILLAR, REMOVE_PILLAR} from "../typeConstants";
+import {saveUserToStorage} from "../actions/userActions";
 
 /**
  * The type definition for the User redux reducer.
@@ -41,7 +36,7 @@ const copyState = (state) => {
  * This reducer handles all the user level states of the app. This includes personal info and history.
  *
  * @param {UserReducer} state The current state of the user reducer.
- * @param {{type: string, payload: *}} action The action to specify how to update the reducer.
+ * @param {{type: string, payload: *, asyncDispatch: function}} action The action to specify how to update the reducer.
  * @return {UserReducer} The next state for the reducer.
  */
 export default (state: UserReducer = initialState, action) => {
@@ -54,12 +49,15 @@ export default (state: UserReducer = initialState, action) => {
       break;
     case ADD_PILLAR:
       state = addPillar(state, action.payload.index, action.payload.pillar);
+      action.asyncDispatch(saveUserToStorage());
       break;
     case EDIT_PILLAR:
       state = editPillar(state, action.payload.index, action.payload.pillar);
+      action.asyncDispatch(saveUserToStorage());
       break;
     case REMOVE_PILLAR:
       state = removePillar(state, action.payload.index);
+      action.asyncDispatch(saveUserToStorage());
       break;
     default: break;
   }

@@ -1,4 +1,4 @@
-import {ADD_PILLAR, EDIT_PILLAR, LOAD_USER, REMOVE_PILLAR, SAVE_USER} from '../reducers/userReducer';
+import {LOAD_USER, SAVE_USER, ADD_PILLAR, EDIT_PILLAR, REMOVE_PILLAR} from "../typeConstants";
 // For all the actions regarding the actual user using the app. (Will be used to access cloud storage of the User's
 // progress and whatnot). May use API calls to retrieve info.
 
@@ -21,7 +21,19 @@ export const updateUser = (successHandler) => {
   };
 };
 
+export const addPillarToUser = (pillar, index = 0) => {
+  return (dispatch) => {
+    dispatch(addPillar(pillar, index));
+  };
+};
+
 // Save
+export const saveUserToStorage = () => {
+  return (dispatch, getStore) => {
+    UserStorage.saveUser(getStore().user.user);
+    dispatch(saveUser());
+  };
+};
 
 // Load
 
@@ -40,7 +52,7 @@ const saveUser = () => ({
   type: SAVE_USER,
 });
 
-const addPillar = (index, pillar) => ({
+export const addPillar = (pillar, index = 0) => ({
   type: ADD_PILLAR,
   payload: {
     index,

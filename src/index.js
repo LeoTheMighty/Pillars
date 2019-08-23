@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import "./semantic-light-theme/dist/semantic.min.css";
+import "./semantic/semantic-dark-theme/dist/semantic.min.css";
 import { BreakpointProvider } from 'react-socks';
 import {Provider} from 'react-redux';
 import store from './redux/store';
