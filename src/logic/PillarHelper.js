@@ -1,3 +1,4 @@
+import {now, daysBefore, weeksBefore, monthsBefore, yearsBefore, parseISOString} from './TimeHelper';
 import type Pillar from "../types/Pillar";
 
 /**
@@ -43,24 +44,49 @@ export const isSubmitted = (pillar) => {
 };
 
 /**
+ * Gets the start date for the interval that the pillar is calculating for.
  *
- * @param pillar
- * @param interval
- * @param duration
- * @return {number} Returns a percentage from 0 - 100 about the current value of the pillar.
+ * @param {string} interval The name of the length of the specific interval to calculate for.
+ * @param {number} duration The number of intervals before the start of the date.
+ * @param {Date} now The date object indicating when to get the interval start for.
  */
-export const getCurrentPillarValue = (pillar, interval, duration) => {
-
+const getIntervalStart = (interval, duration, now) => {
   switch (interval) {
     case "day":
-      break;
+      return daysBefore(duration, now);
+    case "week":
+      return weeksBefore(duration, now);
     case "month":
-      break;
+      return monthsBefore(duration, now);
     case "year":
-      break;
+      return yearsBefore(duration, now);
     default:
       throw new Error("Unrecognized interval string = " + interval);
   }
+};
+
+/**
+ * Gets the current pillar value for the pillar as it will show up on the
+ *
+ * @param {Pillar} pillar The pillar to calculate the current value for.
+ * @param {string} interval The name of the length of the specific interval to calculate for.
+ * @param {number} duration The number of
+ * @param {Date} 
+ * @return {number} Returns a percentage from 0 - 100 about the current value of the pillar.
+ */
+export const getCurrentPillarValue = (pillar, interval, duration, nowDate = now()) => {
+  const intervalStart = getIntervalStart(interval, duration, nowDate);
+  let summedValues = 0;
+  for (let i = 0; i < pillar.submissions.length; i++) {
+    const submission = pillar.submissions[i];
+    if (parseISOString(submission.time_submitted) > intervalStart) {
+      // Add to the value
+      summedValues += submission.value;
+    } else {
+      break;
+    }
+  }
+  return summedValues /
 };
 
 
