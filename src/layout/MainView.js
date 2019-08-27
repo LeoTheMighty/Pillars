@@ -1,27 +1,43 @@
-import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
-import {Button, Container, Modal, Menu} from 'semantic-ui-react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { Button, Container, Modal, Menu } from 'semantic-ui-react';
 import AllPillarsView from '../components/AllPillarsView';
-import PillarCreator from "../components/PillarCreator";
+import PillarCreator from '../components/PillarCreator';
+import { _randomPillars } from '../logic/PillarHelper';
 
-const MainView = (props) => {
+const testPillars = _randomPillars();
+
+/**
+ * The view for the main part of the app where you can view your pillars and edit them.
+ *
+ * @return {*} The jsx for the view
+ * @constructor
+ */
+const MainView = () => {
   return (
     <div>
-      <Menu borderless inverted vertical fluid widths={1} fixed="top" style={{background: 'rgba(256, 256, 256, 0.5)'}}>
-        <Menu.Item style={{background: 'rgba(256, 256, 256, 0.5)'}}>
+      <Menu
+        borderless
+        inverted
+        vertical
+        fluid
+        widths={1}
+        fixed="top"
+        style={{ background: 'rgba(256, 256, 256, 0.5)' }}
+      >
+        <Menu.Item style={{ background: 'rgba(256, 256, 256, 0.5)' }}>
           <Container fluid>
-            <AllPillarsView pillars={[
-              {name: "Exercise", value: 0.85, color: "green"},
-              {name: "Diet", value: 0.65, color: "orange"},
-              {name: "Love", value: 0.3, color: "red"},
-            ]}/>
-            {/*<AllPillarsView pillars={props.user.user.pillars}/>*/}
+            <AllPillarsView pillars={testPillars} intervalView="week" />
+            {/* <AllPillarsView pillars={props.user.user.pillars}/> */}
           </Container>
         </Menu.Item>
         <Menu.Item>
           <Container fluid>
-            <Modal closeIcon trigger={<Button primary>Create New Pillar</Button>}>
-              <PillarCreator/>
+            <Modal
+              closeIcon
+              trigger={<Button primary>Create New Pillar</Button>}
+            >
+              <PillarCreator />
             </Modal>
           </Container>
         </Menu.Item>
@@ -30,8 +46,6 @@ const MainView = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
+export default connect((state) => ({
   user: state.user,
-});
-
-export default connect(mapStateToProps)(MainView);
+}))(MainView);

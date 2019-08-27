@@ -1,6 +1,10 @@
 # Pillars
 ###### Author: Leo Belyi
 
+## Testing
+
+Clone this repo, `yarn install`, then `yarn start` and that should bring up your browser with the product.
+
 ## Abstract
 
 Essentially, Pillars is based on the idea that humans are generally happiest when following a largely pattern-based 
