@@ -6,6 +6,6 @@ type PillarSubmission = {
   time_submitted: string,
   /** The value from 0 - 1 indicating the level to which this submission indicates. */
   value: number,
-}
+};
 
 export default PillarSubmission;

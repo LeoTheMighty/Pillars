@@ -1,21 +1,22 @@
 import { getCurrentPillarValue } from '../PillarHelper';
-import { convertToISOString } from "../TimeHelper";
-import type Pillar from "../../types/Pillar";
+import { convertToISOString } from '../TimeHelper';
+import type Pillar from '../../types/Pillar';
 
-const pillar: Pillar = {
+const booleanPillar: Pillar = {
   color: 'red',
   name: '',
   type: null,
-  submissions: [{
-    time_submitted:
-  }, {
-
-  }],
+  submissions: [
+    {
+      value: 1,
+      time_submitted: convertToISOString(new Date()),
+    },
+    {},
+  ],
 };
-pillar.submissions[0].
 
 describe('Pillar Helper', () => {
   test('should calculate current pillar value correctly', () => {
-    expect(getCurrentPillarValue(pillar)).toBe
+    expect(getCurrentPillarValue(booleanPillar)).toBeTruthy();
   });
 });

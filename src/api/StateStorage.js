@@ -1,5 +1,6 @@
-// Short-term storage for the state of the flow of the app and for non-essential info.
-
+/**
+ * Short-term storage for the state of the flow of the app and for non-essential info.
+ */
 class StateStorage {
   // The key to access the information
   static storageKey = 'state';
@@ -18,9 +19,11 @@ class StateStorage {
    * Saves a user object into storage.
    *
    * @param {PillarsUser} user The user object to save into the storage.
+   * @returns {void} The result of saving the state.
    */
   static saveState(user) {
     localStorage.setItem(StateStorage.storageKey, JSON.stringify(user));
   }
 }
 
+export default StateStorage;
