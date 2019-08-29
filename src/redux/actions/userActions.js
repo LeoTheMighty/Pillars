@@ -1,23 +1,28 @@
-import {LOAD_USER, SAVE_USER, ADD_PILLAR, EDIT_PILLAR, REMOVE_PILLAR} from "../typeConstants";
+import {
+  LOAD_USER,
+  SAVE_USER,
+  ADD_PILLAR,
+  EDIT_PILLAR,
+  REMOVE_PILLAR,
+} from '../typeConstants';
 // For all the actions regarding the actual user using the app. (Will be used to access cloud storage of the User's
 // progress and whatnot). May use API calls to retrieve info.
 
-import UserStorage from "../../api/UserStorage";
-import {newUser} from "../../logic/PillarsUserHelper";
+import UserStorage from '../../api/UserStorage';
+import { newUser } from '../../logic/PillarsUserHelper';
 
 export const updateUser = (successHandler) => {
   return (dispatch, getStore) => {
     let user = UserStorage.loadUser();
     if (!user) {
-      alert("Generating new user!");
+      alert('Generating new user!');
       user = newUser();
       UserStorage.saveUser(user);
 
       // TODO Start up flow state!
-
     }
     dispatch(loadUser(user));
-    successHandler&&successHandler();
+    successHandler && successHandler();
   };
 };
 
@@ -56,7 +61,7 @@ export const addPillar = (pillar, index = 0) => ({
   type: ADD_PILLAR,
   payload: {
     index,
-    pillar
+    pillar,
   },
 });
 

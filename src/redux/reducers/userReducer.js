@@ -1,7 +1,13 @@
-import type PillarsUser from "../../types/PillarsUser";
-import {err} from "../../Constants";
-import {LOAD_USER, SAVE_USER, ADD_PILLAR, EDIT_PILLAR, REMOVE_PILLAR} from "../typeConstants";
-import {saveUserToStorage} from "../actions/userActions";
+import type PillarsUser from '../../types/PillarsUser';
+import { err } from '../../Constants';
+import {
+  LOAD_USER,
+  SAVE_USER,
+  ADD_PILLAR,
+  EDIT_PILLAR,
+  REMOVE_PILLAR,
+} from '../typeConstants';
+import { saveUserToStorage } from '../actions/userActions';
 
 /**
  * The type definition for the User redux reducer.
@@ -27,7 +33,7 @@ const initialState = {
  * @param {UserReducer} state The previous state to copy.
  */
 const copyState = (state) => {
-  return {...state};
+  return { ...state };
 };
 
 /**
@@ -59,10 +65,11 @@ export default (state: UserReducer = initialState, action) => {
       state = removePillar(state, action.payload.index);
       action.asyncDispatch(saveUserToStorage());
       break;
-    default: break;
+    default:
+      break;
   }
   return state;
-}
+};
 
 /**
  * Loads the User into the reducer. Doesn't throw an error if has unsaved changes, but puts an error statement.
@@ -74,7 +81,7 @@ export default (state: UserReducer = initialState, action) => {
 const loadUser = (state, user) => {
   state = copyState(state);
   if (state.unsavedChanges) {
-    err&&console.error("OVERWRITING UNSAVED CHANGES!?!?!?!");
+    err && console.error('OVERWRITING UNSAVED CHANGES!?!?!?!');
   }
   state.user = user;
   return state;
@@ -103,7 +110,7 @@ const saveUser = (state) => {
 const addPillar = (state, index, pillar) => {
   state = copyState(state);
   if (index > state.user.pillars.length) {
-    throw new Error("Attempting to add a pillar to an invalid index!");
+    throw new Error('Attempting to add a pillar to an invalid index!');
   }
   // Add the pillar into the pillars array
   state.user.pillars.splice(index, 0, pillar);
@@ -122,7 +129,7 @@ const addPillar = (state, index, pillar) => {
 const editPillar = (state, index, pillar) => {
   state = copyState(state);
   if (index >= state.user.pillars.length) {
-    throw new Error("Attempting to edit a non-existant pillar!");
+    throw new Error('Attempting to edit a non-existant pillar!');
   }
   state.user.pillars[index] = pillar;
   state.unsavedChanges = true;
@@ -139,7 +146,7 @@ const editPillar = (state, index, pillar) => {
 const removePillar = (state, index) => {
   state = copyState(state);
   if (index >= state.user.pillars.length) {
-    throw new Error("Attempting to remove a non-existant pillar!");
+    throw new Error('Attempting to remove a non-existant pillar!');
   }
   state.user.pillars.splice(index, 1);
   state.unsavedChanges = true;
