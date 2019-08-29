@@ -1,3 +1,3 @@
-export default ({dispatch, getState}) => next => action => {
-  return new Promise((resolve) => resolve(next(action)))
+export default () => (next) => (action) => {
+  return new Promise((resolve) => resolve(next(action)));
 };

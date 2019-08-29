@@ -22,6 +22,7 @@ class UserStorage {
    * Saves a user object into storage.
    *
    * @param {PillarsUser} user The user object to save into the storage.
+   * @return{void}
    */
   static saveUser(user) {
     localStorage.setItem(UserStorage.storageKey, JSON.stringify(user));

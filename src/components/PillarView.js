@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Grid } from 'semantic-ui-react';
-import { Rectangle } from 'react-shapes';
+// import { Rectangle } from 'react-shapes';
 import type Pillar from '../types/Pillar';
 import { getCurrentPillarValue } from '../logic/PillarHelper';
 
@@ -14,7 +14,7 @@ type Props = {
  *
  * @param {Pillar} pillar The pillar to show information for
  * @param {string} intervalView The type of interval
- * @return {*}
+ * @return {*} The jsx for displaying the component
  * @constructor
  */
 const PillarView = ({ pillar, intervalView }: Props) => {
