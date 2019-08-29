@@ -119,7 +119,9 @@ export const _randomPillars = (numPillars = 3, maxNumSubmissions = 10) => {
   ];
   for (let i = 0; i < numPillars; i += 1) {
     const name =
-      potentialPillarNames[faker.random.number(potentialPillarNames.length)];
+      potentialPillarNames[
+        Math.floor(Math.random() * potentialPillarNames.length)
+      ];
     const color = faker.commerce.color();
     const pillar = {
       name,
@@ -127,7 +129,7 @@ export const _randomPillars = (numPillars = 3, maxNumSubmissions = 10) => {
       submissions: [],
     };
     const maxSubmissionInterval = 5;
-    let numberOfDaysBefore = faker.random.number(maxSubmissionInterval);
+    let numberOfDaysBefore = Math.floor(Math.random() * maxSubmissionInterval);
     for (
       let _ = 0;
       _ < faker.random.number(maxNumSubmissions - 1) + 1;
@@ -135,10 +137,11 @@ export const _randomPillars = (numPillars = 3, maxNumSubmissions = 10) => {
     ) {
       // earliest to latest
       pillar.submissions.push({
-        value: faker.random.float({ min: 0.0, max: 1.0 }),
+        value: Math.random(),
         time_submitted: convertToISOString(daysBefore(numberOfDaysBefore)),
       });
-      numberOfDaysBefore += faker.random.number(maxSubmissionInterval) + 1;
+      numberOfDaysBefore +=
+        Math.floor(Math.random() * maxSubmissionInterval) + 1;
     }
     pillars.push(pillar);
   }
