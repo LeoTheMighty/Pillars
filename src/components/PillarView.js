@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Grid } from 'semantic-ui-react';
-// import { Rectangle } from 'react-shapes';
+import Measure from "react-measure";
+import { Rectangle } from 'react-shapes';
 import type Pillar from '../types/Pillar';
 import { getCurrentPillarValue } from '../logic/PillarHelper';
+import useWindowDimensions from "./hooks/useWindowDimensions";
 
 type Props = {
   pillar: Pillar,
+  width: number,
   intervalView: string,
 };
 
@@ -17,7 +20,8 @@ type Props = {
  * @return {*} The jsx for displaying the component
  * @constructor
  */
-const PillarView = ({ pillar, intervalView }: Props) => {
+const PillarView = ({ pillar, intervalView, width }: Props) => {
+  const { height } = useWindowDimensions();
   const [value, setValue] = useState(0);
 
   useEffect(() => {
@@ -25,15 +29,22 @@ const PillarView = ({ pillar, intervalView }: Props) => {
   }, [pillar, intervalView]);
 
   return (
-    <div>
-      <Grid>
-        <Grid.Row key={0}>{`Name: ${pillar.name}`}</Grid.Row>
-        <Grid.Row key={1}>{`Value: ${value}`}</Grid.Row>
-        <Grid.Row key={2} style={{ color: pillar.color }}>
-          {`Color: ${pillar.color}`}
-        </Grid.Row>
-      </Grid>
-    </div>
+    <Measure
+      bounds
+      onResize={(contentRect) => {
+        setWidth(contentRect.bounds.width);
+      }}
+    >
+      {({ measureRef }) => (
+        <div ref={measureRef}>
+          <Rectangle
+            width={width}
+            height={(height || 0) * value}
+            fill={{ color: pillar.color }}
+          />
+        </div>
+      )}
+    </Measure>
   );
 };
 
