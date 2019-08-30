@@ -20,13 +20,14 @@ type Props = {
 const AllPillarsView = ({ pillars, intervalView }: Props) => {
   return (
     <Grid
-      stretched
       columns={pillars.length}
-      style={{ marginRight: '5px', marginLeft: '5px' }}
+      style={{
+        height: '80vh',
+      }}
     >
       {pillars.length > 0 ? (
         _.times(pillars.length, (i) => (
-          <Grid.Column key={i}>
+          <Grid.Column key={i} verticalAlign="bottom">
             <PillarView pillar={pillars[i]} intervalView={intervalView} />
           </Grid.Column>
         ))

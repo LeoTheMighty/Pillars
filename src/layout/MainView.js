@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Container, Modal, Menu } from 'semantic-ui-react';
+import { Container, Menu } from 'semantic-ui-react';
 import AllPillarsView from '../components/AllPillarsView';
-import PillarCreator from '../components/PillarCreator';
+import PillarsHeaderView from './PillarsHeaderView';
 import { _randomPillars } from '../logic/PillarHelper';
 
 const testPillars = _randomPillars();
@@ -17,28 +17,21 @@ const MainView = () => {
   return (
     <div>
       <Menu
-        borderless
-        inverted
-        vertical
         fluid
+        vertical
         widths={1}
-        fixed="top"
-        style={{ background: 'rgba(256, 256, 256, 0.5)' }}
+        style={{
+          background: 'rgba(256, 256, 256, 0.5)',
+          marginTop: '20px',
+        }}
       >
+        <Menu.Item>
+          <PillarsHeaderView />
+        </Menu.Item>
         <Menu.Item style={{ background: 'rgba(256, 256, 256, 0.5)' }}>
           <Container fluid>
             <AllPillarsView pillars={testPillars} intervalView="week" />
             {/* <AllPillarsView pillars={props.user.user.pillars}/> */}
-          </Container>
-        </Menu.Item>
-        <Menu.Item>
-          <Container fluid>
-            <Modal
-              closeIcon
-              trigger={<Button primary>Create New Pillar</Button>}
-            >
-              <PillarCreator />
-            </Modal>
           </Container>
         </Menu.Item>
       </Menu>
