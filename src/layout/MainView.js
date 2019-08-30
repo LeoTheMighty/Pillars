@@ -5,7 +5,7 @@ import AllPillarsView from '../components/AllPillarsView';
 import PillarsHeaderView from './PillarsHeaderView';
 import { _randomPillars } from '../logic/PillarHelper';
 
-const testPillars = _randomPillars();
+const testPillars = _randomPillars(5);
 
 /**
  * The view for the main part of the app where you can view your pillars and edit them.
@@ -21,7 +21,8 @@ const MainView = () => {
         vertical
         widths={1}
         style={{
-          background: 'rgba(256, 256, 256, 0.5)',
+          height: '91vh',
+          background: 'rgba(256, 256, 256, 0.3)',
           marginTop: '20px',
         }}
       >

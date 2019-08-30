@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Grid } from 'semantic-ui-react';
-import Measure from "react-measure";
 import type Pillar from '../types/Pillar';
 import { getCurrentPillarValue } from '../logic/PillarHelper';
-import useWindowDimensions from './hooks/useWindowDimensions';
 
 type Props = {
   pillar: Pillar,
@@ -19,7 +16,6 @@ type Props = {
  * @constructor
  */
 const PillarView = ({ pillar, intervalView }: Props) => {
-  const { height } = useWindowDimensions();
   const [value, setValue] = useState(0);
 
   useEffect(() => {
@@ -27,17 +23,17 @@ const PillarView = ({ pillar, intervalView }: Props) => {
   }, [pillar, intervalView]);
 
   return (
-    <div>
-      <div
-        style={{
-          height: (height || 0) * value,
-          backgroundColor: pillar.color,
-        }}
-      >
-        {value}
-        {'\n'}
-        {pillar.name}
-      </div>
+    <div
+      style={{
+        height: `${value * 75}vh`,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: pillar.color,
+      }}
+    >
+      {value}
+      {'\n'}
+      {pillar.name}
     </div>
   );
 };
