@@ -1,3 +1,14 @@
+import { SET_CHECKING } from '../typeConstants';
 
-// For all the actions regarding the flow from page to page of the application. Will be used to manage the app's page
-// state, in conjunction with indexedDB potentially.
+/**
+ * Redux action for setting the flow isChecking.
+ *
+ * @param {boolean} isChecking Whether the app will be checking for submissions.
+ * @returns {{payload: {isChecking: *}, type: *}} The redux action information.
+ */
+export const setIsChecking = (isChecking) => ({
+  type: SET_CHECKING,
+  payload: {
+    isChecking,
+  },
+});

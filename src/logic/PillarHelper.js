@@ -18,7 +18,12 @@ import {
  * @param {string|null} type The special type of the pillar to create.
  * @returns {Pillar} The newly created Pillar.
  */
-export const newPillar = (name, color, type) => ({ name, color, type });
+export const newPillar = (name, color, type) => ({
+  name,
+  color,
+  type,
+  submissions: [],
+});
 
 /**
  * Creates a new custom Pillar.
@@ -30,6 +35,17 @@ export const newPillar = (name, color, type) => ({ name, color, type });
 export const newCustomPillar = (name, color) => newPillar(name, color, null);
 
 /**
+ * Creates a new Submission for a Pillar.
+ *
+ * @param {number} value The decimal value to accompany the submission.
+ * @returns {PillarSubmission} The newly created submission.
+ */
+export const newSubmission = (value) => ({
+  value,
+  time_submitted: convertToISOString(now()),
+});
+
+/**
  * Returns whether the pillar has been submitted today yet.
  *
  * @param {Pillar} pillar The pillar object to receive the information about
@@ -37,11 +53,11 @@ export const newCustomPillar = (name, color) => newPillar(name, color, null);
  * @returns {boolean} Whether the pillar has been submitted already now
  */
 export const isSubmitted = (pillar, nowDate = now()) => {
-  if (pillar.submissions.length > 0) {
+  if (pillar.submissions && pillar.submissions.length > 0) {
     const latestSubmission = pillar.submissions[0];
-    return daysBetween(
-      nowDate,
-      parseISOString(latestSubmission.time_submitted),
+    return (
+      daysBetween(nowDate, parseISOString(latestSubmission.time_submitted)) ===
+      0
     );
   }
   return false;
@@ -87,6 +103,10 @@ export const getCurrentPillarValue = (
 ) => {
   const intervalStart = getIntervalStart(interval, duration, nowDate);
   let summedValues = 0;
+  // TODO Get rid of this once done testing
+  if (!pillar.submissions || pillar.submissions.length === 0) {
+    return 1.0;
+  }
   for (let i = 0; i < pillar.submissions.length; i += 1) {
     const submission = pillar.submissions[i];
     if (parseISOString(submission.time_submitted) > intervalStart) {
@@ -128,7 +148,7 @@ export const _randomPillars = (numPillars = 3, maxNumSubmissions = 10) => {
       color,
       submissions: [],
     };
-    const maxSubmissionInterval = 1;
+    const maxSubmissionInterval = 3;
     let numberOfDaysBefore = Math.floor(Math.random() * maxSubmissionInterval);
     for (
       let _ = 0;

@@ -40,7 +40,7 @@ const createPillar = (
   setTimeout(() => {
     if (name && color) {
       const pillar = newPillar(name, color);
-      addPillar(pillar);
+      addPillarRedux(pillar);
       setSuccess(true);
     } else {
       setSuccess(false);
@@ -174,10 +174,11 @@ const PillarCreator = ({ addPillarRedux }: Props) => {
 
 export default connect(
   () => ({}),
-  {
-    // TODO This might not work
-    addPillarRedux: (pillar, index) => {
-      addPillar(pillar, index);
-    },
+  (dispatch) => {
+    return {
+      addPillarRedux: (pillar, index) => {
+        dispatch(addPillar(pillar, index));
+      },
+    };
   },
 )(PillarCreator);

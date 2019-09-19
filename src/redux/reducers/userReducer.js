@@ -6,13 +6,15 @@ import {
   ADD_PILLAR,
   EDIT_PILLAR,
   REMOVE_PILLAR,
+  ADD_SUBMISSION,
+  REMOVE_SUBMISSION,
 } from '../typeConstants';
 import { saveUserToStorage } from '../actions/userActions';
 
 /**
  * The type definition for the User redux reducer.
  */
-type UserReducer = {
+export type UserReducer = {
   user: PillarsUser,
   unsavedChanges: boolean,
 };
@@ -31,6 +33,7 @@ const initialState = {
  * Deeply copies the User Reducer state. TODO
  *
  * @param {UserReducer} state The previous state to copy.
+ * @return {UserReducer} state The copied state.
  */
 const copyState = (state) => {
   return { ...state };
@@ -64,6 +67,17 @@ export default (state: UserReducer = initialState, action) => {
     case REMOVE_PILLAR:
       state = removePillar(state, action.payload.index);
       action.asyncDispatch(saveUserToStorage());
+      break;
+    case ADD_SUBMISSION:
+      state = addSubmission(
+        state,
+        action.payload.index,
+        action.payload.submission,
+      );
+      action.asyncDispatch(saveUserToStorage());
+      break;
+    case REMOVE_SUBMISSION:
+      state = removeSubmission(state, action.payload.index);
       break;
     default:
       break;
@@ -151,4 +165,57 @@ const removePillar = (state, index) => {
   state.user.pillars.splice(index, 1);
   state.unsavedChanges = true;
   return state;
+};
+
+/**
+ * Adds a submission to one of the User's pillars.
+ *
+ * @param {UserReducer} state The initial state for the user.
+ * @param {number} pillarIndex The index for the pillar to add the submission for.
+ * @param {PillarSubmission} submission The submission to add for the user.
+ * @returns {UserReducer} The updated user state.
+ */
+const addSubmission = (state, pillarIndex, submission) => {
+  const pillars = [...state.user.pillars];
+  if (pillars.length < pillarIndex) {
+    throw new Error(
+      'Pillar Index not in bounds of pillars array for adding submission!',
+    );
+  }
+  pillars[pillarIndex].submissions = [
+    submission,
+    ...pillars[pillarIndex].submissions,
+  ];
+  return {
+    ...state,
+    user: {
+      ...state.user,
+      pillars,
+    },
+  };
+};
+
+/**
+ * Removes the latest submission from one of the user's pillars.
+ *
+ * @param {UserReducer} state The initial state for the user.
+ * @param {number} pillarIndex The index for the pillar to remove the submission for.
+ * @returns {UserReducer} The updated user state.
+ */
+const removeSubmission = (state, pillarIndex) => {
+  const pillars = [...state.user.pillars];
+  if (pillars.length < pillarIndex) {
+    throw new Error(
+      'Pillar Index not in bounds of pillars array for removing submission!',
+    );
+  }
+  pillars[pillarIndex].submissions = [...pillars[pillarIndex].submissions];
+  pillars[pillarIndex].submissions.pop();
+  return {
+    ...state,
+    user: {
+      ...state.user,
+      pillars,
+    },
+  };
 };

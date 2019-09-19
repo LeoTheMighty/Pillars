@@ -3,13 +3,13 @@ import {
   SAVE_USER,
   ADD_PILLAR,
   EDIT_PILLAR,
-  REMOVE_PILLAR,
+  REMOVE_PILLAR, ADD_SUBMISSION, REMOVE_SUBMISSION,
 } from '../typeConstants';
-// For all the actions regarding the actual user using the app. (Will be used to access cloud storage of the User's
-// progress and whatnot). May use API calls to retrieve info.
-
 import UserStorage from '../../api/UserStorage';
 import { newUser } from '../../logic/PillarsUserHelper';
+
+// For all the actions regarding the actual user using the app. (Will be used to access cloud storage of the User's
+// progress and whatnot). May use API calls to retrieve info.
 
 export const updateUser = (successHandler) => {
   return (dispatch, getStore) => {
@@ -26,13 +26,11 @@ export const updateUser = (successHandler) => {
   };
 };
 
-export const addPillarToUser = (pillar, index = 0) => {
-  return (dispatch) => {
-    dispatch(addPillar(pillar, index));
-  };
-};
-
 // Save
+/**
+ *
+ * @returns {Function}
+ */
 export const saveUserToStorage = () => {
   return (dispatch, getStore) => {
     UserStorage.saveUser(getStore().user.user);
@@ -44,8 +42,16 @@ export const saveUserToStorage = () => {
 
 // Edit (in different ways)
 
-// Low Level Redux Actions
+// =============================
+// == Low Level Redux Actions ==
+// =============================
 
+/**
+ * Loads a User from storage into the app.
+ *
+ * @param user
+ * @returns {{payload: {user: *}, type: *}}
+ */
 const loadUser = (user) => ({
   type: LOAD_USER,
   payload: {
@@ -75,6 +81,21 @@ const editPillar = (index, pillar) => ({
 
 const removePillar = (index) => ({
   type: REMOVE_PILLAR,
+  payload: {
+    index,
+  },
+});
+
+export const addSubmission = (index, submission) => ({
+  type: ADD_SUBMISSION,
+  payload: {
+    index,
+    submission,
+  },
+});
+
+export const removeSubmission = (index) => ({
+  type: REMOVE_SUBMISSION,
   payload: {
     index,
   },

@@ -3,10 +3,14 @@ import { Grid, Message } from 'semantic-ui-react';
 import _ from 'lodash';
 import type Pillar from '../types/Pillar';
 import PillarView from './PillarView';
+import type PillarSubmission from '../types/PillarSubmission';
 
 type Props = {
   pillars: [Pillar],
   intervalView: string,
+  editing: boolean,
+  addSubmissionRedux: (number, PillarSubmission) => void,
+  removeSubmissionRedux: (number) => void,
 };
 
 /**
@@ -14,10 +18,19 @@ type Props = {
  *
  * @param {[Pillar]} pillars The pillar objects to display
  * @param {string} intervalView The type of interval type for the values
+ * @param {boolean} editing Whether the pillars are currently being edited or not.
+ * @param {Function} addSubmissionRedux Redux function for adding submission.
+ * @param {Function} removeSubmissionRedux Redux function for removing submission.
  * @return {*} The jsx for the component
  * @constructor
  */
-const AllPillarsView = ({ pillars, intervalView }: Props) => {
+const AllPillarsView = ({
+  pillars,
+  intervalView,
+  editing,
+  addSubmissionRedux,
+  removeSubmissionRedux,
+}: Props) => {
   return (
     <Grid
       columns={pillars.length}
@@ -28,7 +41,13 @@ const AllPillarsView = ({ pillars, intervalView }: Props) => {
       {pillars.length > 0 ? (
         _.times(pillars.length, (i) => (
           <Grid.Column key={i} verticalAlign="bottom">
-            <PillarView pillar={pillars[i]} intervalView={intervalView} />
+            <PillarView
+              pillar={pillars[i]}
+              intervalView={intervalView}
+              editing={editing}
+              addSubmissionRedux={(s) => addSubmissionRedux(i, s)}
+              removeSubmissionRedux={() => removeSubmissionRedux(i)}
+            />
           </Grid.Column>
         ))
       ) : (
