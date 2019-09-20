@@ -2,6 +2,7 @@
   "name": "pillars",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://leothemighty.github.io/Pillars/",
   "dependencies": {
     "eslint-utils": "^1.4.2",
     "faker": "^4.1.0",
@@ -24,7 +25,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint -c ./.eslintrc.json src/**/*.js"
+    "lint": "eslint -c ./.eslintrc.json src/**/*.js",
+    "predeploy": "react-scripts build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -47,6 +50,7 @@
     "eslint-plugin-flowtype": "^4.2.0",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-require-jsdoc-except": "^1.3.0",
+    "gh-pages": "^2.1.1",
     "prettier": "^1.18.2"
   }
 }

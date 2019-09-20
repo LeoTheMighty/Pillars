@@ -1,5 +1,4 @@
-import {_randomPillars} from "../logic/PillarHelper";
-import type PillarsUser from "../types/PillarsUser";
+// import {_randomPillars} from "../logic/PillarHelper";
 
 /**
  * Local Storage usage for loading the user data from to the local machine. Stores data from different runs. Indefinite
@@ -15,12 +14,12 @@ class UserStorage {
    * @return {PillarsUser | null} The user object retrieved from the storage or null if there was no user object found.
    */
   static loadUser() {
-    // const userJSON = localStorage.getItem(UserStorage.storageKey);
-    // return userJSON ? JSON.parse(userJSON) : null;
-    const userJSON: PillarsUser = {
-      pillars: _randomPillars(5),
-    };
-    return userJSON;
+    const userJSON = localStorage.getItem(UserStorage.storageKey);
+    return userJSON ? JSON.parse(userJSON) : null;
+    // const userJSON = {
+    //   pillars: _randomPillars(5),
+    // };
+    // return userJSON;
   }
 
   /**
@@ -30,7 +29,7 @@ class UserStorage {
    * @return{void}
    */
   static saveUser(user) {
-    // localStorage.setItem(UserStorage.storageKey, JSON.stringify(user));
+    localStorage.setItem(UserStorage.storageKey, JSON.stringify(user));
   }
 }
 
