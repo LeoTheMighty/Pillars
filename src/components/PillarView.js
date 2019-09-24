@@ -60,6 +60,7 @@ const handlePillarUncheckConfirm = (
  * @param {Pillar} pillar The pillar to show information for
  * @param {string} intervalView The type of interval
  * @param {boolean} submitting Whether the pillar is able to be checked right now.
+ * @param {Function} addSubmissionRedux Redux function for
  * @return {*} The jsx for displaying the component
  * @constructor
  */
@@ -69,6 +70,7 @@ const PillarView = ({
   submitting,
   addSubmissionRedux,
   removeSubmissionRedux,
+  deletePillarRedux,
 }: Props) => {
   const [detailModalOpen, setDetailModalOpen] = useState(false);
   const [checked, setChecked] = useState(false);
@@ -147,7 +149,7 @@ const PillarView = ({
         </Grid>
       </div>
       <Modal open={detailModalOpen} onClose={() => setDetailModalOpen(false)} closeIcon>
-        <PillarDescriptionView pillar={pillar} closeView={() => setDetailModalOpen(false)} deletePillarRedux={}/>
+        <PillarDescriptionView pillar={pillar} closeView={() => setDetailModalOpen(false)} deletePillarRedux={deletePillarRedux}/>
       </Modal>
     </div>
   );

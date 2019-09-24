@@ -79,7 +79,7 @@ const editPillar = (index, pillar) => ({
   },
 });
 
-const removePillar = (index) => ({
+export const deletePillar = (index) => ({
   type: REMOVE_PILLAR,
   payload: {
     index,
