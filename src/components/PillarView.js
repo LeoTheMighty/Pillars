@@ -8,17 +8,20 @@ import {
   newSubmission,
 } from '../logic/PillarHelper';
 import type PillarSubmission from '../types/PillarSubmission';
+import PillarDescriptionView from "./PillarDescriptionView";
 
 type Props = {
   pillar: Pillar,
   intervalView: string,
-  editing: boolean,
+  submitting: boolean,
   addSubmissionRedux: (PillarSubmission) => void,
   removeSubmissionRedux: () => void,
+  deletePillarRedux: () => void,
 };
 
 /**
- * 
+ * Handles the checking of the visual Pillar while in submitting mode.
+ *
  * @param checked
  * @param {Function} addSubmissionRedux
  * @param setChecked
@@ -56,17 +59,18 @@ const handlePillarUncheckConfirm = (
  *
  * @param {Pillar} pillar The pillar to show information for
  * @param {string} intervalView The type of interval
- * @param {boolean} editing Whether the pillar is able to be checked right now.
+ * @param {boolean} submitting Whether the pillar is able to be checked right now.
  * @return {*} The jsx for displaying the component
  * @constructor
  */
 const PillarView = ({
   pillar,
   intervalView,
-  editing,
+  submitting,
   addSubmissionRedux,
   removeSubmissionRedux,
 }: Props) => {
+  const [detailModalOpen, setDetailModalOpen] = useState(false);
   const [checked, setChecked] = useState(false);
   const [value, setValue] = useState(0);
   const [confirmUndoModalOpen, setConfirmUndoModalOpen] = useState(false);
@@ -85,6 +89,8 @@ const PillarView = ({
         backgroundColor: pillar.color,
         position: 'relative',
       }}
+      role="button"
+      onClick={() => !detailModalOpen && setDetailModalOpen((p) => !p)}
     >
       <div
         style={{
@@ -100,7 +106,7 @@ const PillarView = ({
             {pillar.name}
           </Grid.Row>
           <Grid.Row>
-            {editing && (
+            {submitting && (
               <Checkbox
                 toggle
                 checked={checked}
@@ -140,6 +146,9 @@ const PillarView = ({
           </Grid.Row>
         </Grid>
       </div>
+      <Modal open={detailModalOpen} onClose={() => setDetailModalOpen(false)} closeIcon>
+        <PillarDescriptionView pillar={pillar} closeView={() => setDetailModalOpen(false)} deletePillarRedux={}/>
+      </Modal>
     </div>
   );
 };

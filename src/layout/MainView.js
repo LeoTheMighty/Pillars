@@ -51,7 +51,7 @@ const MainView = ({
             <AllPillarsView
               pillars={user.user.pillars}
               intervalView="week"
-              editing={flow.isChecking}
+              submitting={flow.isChecking}
               addSubmissionRedux={addSubmissionRedux}
               removeSubmissionRedux={removeSubmissionRedux}
             />

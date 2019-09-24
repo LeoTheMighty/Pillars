@@ -8,9 +8,10 @@ import type PillarSubmission from '../types/PillarSubmission';
 type Props = {
   pillars: [Pillar],
   intervalView: string,
-  editing: boolean,
+  submitting: boolean,
   addSubmissionRedux: (number, PillarSubmission) => void,
   removeSubmissionRedux: (number) => void,
+  deletePillarRedux: (number) => void,
 };
 
 /**
@@ -18,18 +19,20 @@ type Props = {
  *
  * @param {[Pillar]} pillars The pillar objects to display
  * @param {string} intervalView The type of interval type for the values
- * @param {boolean} editing Whether the pillars are currently being edited or not.
+ * @param {boolean} editing Whether the pillars are currently being submitted or not.
  * @param {Function} addSubmissionRedux Redux function for adding submission.
  * @param {Function} removeSubmissionRedux Redux function for removing submission.
+ * @param {Function} deletePillarRedux Redux function for deleting a Pillar.
  * @return {*} The jsx for the component
  * @constructor
  */
 const AllPillarsView = ({
   pillars,
   intervalView,
-  editing,
+  submitting,
   addSubmissionRedux,
   removeSubmissionRedux,
+  deletePillarRedux,
 }: Props) => {
   return (
     <Grid
@@ -44,9 +47,10 @@ const AllPillarsView = ({
             <PillarView
               pillar={pillars[i]}
               intervalView={intervalView}
-              editing={editing}
+              submitting={submitting}
               addSubmissionRedux={(s) => addSubmissionRedux(i, s)}
               removeSubmissionRedux={() => removeSubmissionRedux(i)}
+              deletePillarRedux={() => deletePillarRedux(i)}
             />
           </Grid.Column>
         ))
