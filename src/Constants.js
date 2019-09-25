@@ -1,8 +1,11 @@
 // Logging constants
-export const log = true;
-export const err = true;
+export const LOG = true;
+export const ERR = true;
 
-export const reduxLog = true;
+export const REDUX_LOG = true;
 
 // Debugging Constants
-export const randomizePillars = false;
+export const RANDOMIZE_PILLARS = false;
+
+// Fuckery
+export const LOADING_TIME = 2000;

@@ -1,5 +1,5 @@
 import type PillarsUser from '../../types/PillarsUser';
-import { err } from '../../Constants';
+import { ERR } from '../../Constants';
 import {
   LOAD_USER,
   SAVE_USER,
@@ -95,7 +95,7 @@ export default (state: UserReducer = initialState, action) => {
 const loadUser = (state, user) => {
   state = copyState(state);
   if (state.unsavedChanges) {
-    err && console.error('OVERWRITING UNSAVED CHANGES!?!?!?!');
+    ERR && console.error('OVERWRITING UNSAVED CHANGES!?!?!?!');
   }
   state.user = user;
   return state;

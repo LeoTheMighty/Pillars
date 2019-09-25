@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Grid, Button, Container, Modal } from 'semantic-ui-react';
 import PillarCreator from '../components/PillarCreator';
@@ -17,19 +17,24 @@ type Props = {
  * @constructor
  */
 const PillarsHeaderView = ({ flow, setIsCheckingRedux }: Props) => {
+  const [creatorIsOpen, setCreatorIsOpen] = useState(false);
   return (
     <Container fluid>
       <Grid columns="equal">
         <Grid.Column>
+          <Button
+            icon=""
+            primary
+            onClick={() => creatorIsOpen || setCreatorIsOpen(true)}
+          >
+            Create New Pillar
+          </Button>
           <Modal
             closeIcon
-            trigger={
-              <Button icon="money" primary>
-                Create New Pillar
-              </Button>
-            }
+            open={creatorIsOpen}
+            onClose={() => setCreatorIsOpen(false)}
           >
-            <PillarCreator />
+            <PillarCreator closeView={() => setCreatorIsOpen(false)} />
           </Modal>
         </Grid.Column>
         <Grid.Column>

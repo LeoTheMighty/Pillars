@@ -11,10 +11,13 @@ import {
 import { SketchPicker } from 'react-color';
 import { addPillar } from '../redux/actions/userActions';
 import { newPillar } from '../logic/PillarHelper';
+import type Pillar from '../types/Pillar';
+import { LOADING_TIME } from '../Constants';
 
 type Props = {
-  // Redux
-  addPillarRedux: Function,
+  closeView: () => void,
+  // Directly From Redux
+  addPillarRedux: (Pillar) => void,
 };
 
 /**
@@ -31,6 +34,7 @@ type Props = {
 const createPillar = (
   name,
   color,
+  closeView,
   addPillarRedux,
   setSuccess,
   setIsLoading,
@@ -42,12 +46,13 @@ const createPillar = (
       const pillar = newPillar(name, color);
       addPillarRedux(pillar);
       setSuccess(true);
+      closeView();
     } else {
       setSuccess(false);
       setError(new Error(''));
     }
     setIsLoading(false);
-  }, 2000);
+  }, LOADING_TIME);
 };
 
 /**
@@ -94,7 +99,7 @@ export const displayError = (error) => {
  * @return {*} The jsx to display the component
  * @constructor
  */
-const PillarCreator = ({ addPillarRedux }: Props) => {
+const PillarCreator = ({ closeView, addPillarRedux }: Props) => {
   const [name, setName] = useState(null);
   const [color, setColor] = useState('#fff');
   const [success, setSuccess] = useState(false);
@@ -108,6 +113,7 @@ const PillarCreator = ({ addPillarRedux }: Props) => {
           createPillar(
             name,
             color,
+            closeView,
             addPillarRedux,
             setSuccess,
             setIsLoading,
@@ -156,6 +162,7 @@ const PillarCreator = ({ addPillarRedux }: Props) => {
               createPillar(
                 name,
                 color,
+                closeView,
                 addPillarRedux,
                 setSuccess,
                 setIsLoading,

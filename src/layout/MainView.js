@@ -71,14 +71,9 @@ export default connect(
     flow: state.flow,
   }),
   (dispatch) => ({
-    addSubmissionRedux: (index, submission) => {
-      dispatch(addSubmission(index, submission));
-    },
-    removeSubmissionRedux: (index) => {
-      dispatch(removeSubmission(index));
-    },
-    deletePillarRedux: (index) => {
-      dispatch(deletePillar(index));
-    },
+    addSubmissionRedux: (index, submission) =>
+      dispatch(addSubmission(index, submission)),
+    removeSubmissionRedux: (index) => dispatch(removeSubmission(index)),
+    deletePillarRedux: (index) => dispatch(deletePillar(index)),
   }),
 )(MainView);

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Header } from 'semantic-ui-react';
 import type Pillar from '../types/Pillar';
+import { LOADING_TIME } from '../Constants';
 
 type Props = {
   pillar: Pillar,
@@ -23,10 +24,21 @@ const PillarDescriptionView = ({
   closeView,
   deletePillarRedux,
 }: Props) => {
+  const [deleteIsLoading, setDeleteIsLoading] = useState(false);
   return (
     <div>
       <Header>{pillar.name}</Header>
-      <Button onClick={() => deletePillarRedux().then(() => closeView())}>
+      <Button
+        loading={deleteIsLoading}
+        onClick={() => {
+          setDeleteIsLoading(true);
+          setTimeout(() => {
+            deletePillarRedux();
+            closeView();
+            setDeleteIsLoading(false);
+          }, LOADING_TIME);
+        }}
+      >
         Delete
       </Button>
     </div>

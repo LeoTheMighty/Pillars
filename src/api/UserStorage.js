@@ -1,5 +1,5 @@
 import { _randomPillars } from '../logic/PillarHelper';
-import { randomizePillars } from '../Constants';
+import { RANDOMIZE_PILLARS } from '../Constants';
 
 /**
  * Local Storage usage for loading the user data from to the local machine. Stores data from different runs. Indefinite
@@ -15,7 +15,7 @@ class UserStorage {
    * @return {PillarsUser | null} The user object retrieved from the storage or null if there was no user object found.
    */
   static loadUser() {
-    if (randomizePillars) {
+    if (RANDOMIZE_PILLARS) {
       return {
         pillars: _randomPillars(5),
       };
@@ -31,7 +31,7 @@ class UserStorage {
    * @return{void}
    */
   static saveUser(user) {
-    if (!randomizePillars) {
+    if (!RANDOMIZE_PILLARS) {
       localStorage.setItem(UserStorage.storageKey, JSON.stringify(user));
     }
   }

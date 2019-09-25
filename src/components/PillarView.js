@@ -148,8 +148,16 @@ const PillarView = ({
           </Grid.Row>
         </Grid>
       </div>
-      <Modal open={detailModalOpen} onClose={() => setDetailModalOpen(false)} closeIcon>
-        <PillarDescriptionView pillar={pillar} closeView={() => setDetailModalOpen(false)} deletePillarRedux={deletePillarRedux}/>
+      <Modal
+        open={detailModalOpen}
+        onClose={() => setDetailModalOpen(false)}
+        closeIcon
+      >
+        <PillarDescriptionView
+          pillar={pillar}
+          closeView={() => setDetailModalOpen(false)}
+          deletePillarRedux={deletePillarRedux}
+        />
       </Modal>
     </div>
   );

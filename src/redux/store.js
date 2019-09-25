@@ -1,17 +1,16 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
 import logger from 'redux-logger';
+import thunk from 'redux-thunk';
 import user from './reducers/userReducer';
 import flow from './reducers/flowReducer';
 import asyncDispatch from './middleware/AsyncDispatchMiddleware';
-import promisify from './middleware/PromisifyMiddleware';
-import { reduxLog } from '../Constants';
+import { REDUX_LOG } from '../Constants';
 
 let middleware;
-if (reduxLog) {
-  middleware = applyMiddleware(logger, thunk, asyncDispatch, promisify);
+if (REDUX_LOG) {
+  middleware = applyMiddleware(logger, thunk, asyncDispatch);
 } else {
-  middleware = applyMiddleware(thunk, asyncDispatch, promisify);
+  middleware = applyMiddleware(thunk, asyncDispatch);
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
