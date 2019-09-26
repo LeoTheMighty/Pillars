@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Header } from 'semantic-ui-react';
+import { Button, Header, ModalActions, ModalContent } from 'semantic-ui-react';
 import type Pillar from '../types/Pillar';
 import { LOADING_TIME } from '../Constants';
 
@@ -27,20 +27,24 @@ const PillarDescriptionView = ({
   const [deleteIsLoading, setDeleteIsLoading] = useState(false);
   return (
     <div>
-      <Header>{pillar.name}</Header>
-      <Button
-        loading={deleteIsLoading}
-        onClick={() => {
-          setDeleteIsLoading(true);
-          setTimeout(() => {
-            deletePillarRedux();
-            closeView();
-            setDeleteIsLoading(false);
-          }, LOADING_TIME);
-        }}
-      >
-        Delete
-      </Button>
+      <ModalContent>
+        description goes here
+      </ModalContent>
+      <ModalActions>
+        <Button
+          loading={deleteIsLoading}
+          onClick={() => {
+            setDeleteIsLoading(true);
+            setTimeout(() => {
+              deletePillarRedux();
+              closeView();
+              setDeleteIsLoading(false);
+            }, LOADING_TIME);
+          }}
+        >
+          Delete
+        </Button>
+      </ModalActions>
     </div>
   );
 };

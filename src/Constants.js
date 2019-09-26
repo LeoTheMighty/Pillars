@@ -8,4 +8,4 @@ export const REDUX_LOG = true;
 export const RANDOMIZE_PILLARS = false;
 
 // Fuckery
-export const LOADING_TIME = 2000;
+export const LOADING_TIME = 250;

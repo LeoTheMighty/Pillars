@@ -153,6 +153,7 @@ const PillarView = ({
         onClose={() => setDetailModalOpen(false)}
         closeIcon
       >
+        <Modal.Header>{pillar.name}</Modal.Header>
         <PillarDescriptionView
           pillar={pillar}
           closeView={() => setDetailModalOpen(false)}
