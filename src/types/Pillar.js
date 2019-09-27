@@ -1,4 +1,4 @@
-import type PillarSubmission from "./PillarSubmission";
+import type PillarSubmission from './PillarSubmission';
 
 /**
  * A demonstration of the extent to which one has achieved a goal. Stores all historical information about the goal
@@ -7,6 +7,8 @@ import type PillarSubmission from "./PillarSubmission";
 type Pillar = {
   /** The name of the Pillar to work toward. */
   name: string,
+  /** The description for how to complete a Submission for the pillar. */
+  description: string,
   /** The color of the Pillar to display. */
   color: string,
   /** The special type of the Pillar, to handle differently in submissions/details. */
@@ -16,6 +18,6 @@ type Pillar = {
    *  Index 0 is the latest submission.
    *  */
   submissions: [PillarSubmission],
-}
+};
 
 export default Pillar;

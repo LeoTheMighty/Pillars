@@ -29,7 +29,7 @@
     "no-await-in-loop": 1,
     "no-use-before-define": "off",
     "no-param-reassign": "off",
-    "no-unused-expressions": "warn",
+    "no-unused-expressions": "off",
     "valid-jsdoc": "error",
     "import/no-extraneous-dependencies": 2,
     "prettier/prettier": "error",

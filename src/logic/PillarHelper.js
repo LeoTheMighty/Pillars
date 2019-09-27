@@ -1,4 +1,5 @@
 import faker from 'faker';
+import _ from 'lodash';
 import {
   now,
   daysBefore,
@@ -14,12 +15,14 @@ import {
  * Creates a new Pillar.
  *
  * @param {string} name The name of the pillar.
+ * @param {string} description The description for the pillar.
  * @param {string} color The color to display for the pillar.
  * @param {string|null} type The special type of the pillar to create.
  * @returns {Pillar} The newly created Pillar.
  */
-export const newPillar = (name, color, type) => ({
+export const newPillar = (name, description, color, type) => ({
   name,
+  description,
   color,
   type,
   submissions: [],
@@ -29,10 +32,35 @@ export const newPillar = (name, color, type) => ({
  * Creates a new custom Pillar.
  *
  * @param {string} name The name of the pillar.
+ * @param {string} description The description for the pillar.
  * @param {string} color The color to display for the pillar.
  * @returns {Pillar} The newly created custom Pillar.
  */
-export const newCustomPillar = (name, color) => newPillar(name, color, null);
+export const newCustomPillar = (name, description, color) =>
+  newPillar(name, description, color, null);
+
+/**
+ * Deep copies a pillar entirely.
+ *
+ * @param {Pillar} pillar The pillar to copy.
+ * @return {Pillar} The copied pillar.
+ */
+export const deepCopyPillar = (pillar) => ({
+  ...pillar,
+  submissions: _.times(pillar.submissions.length, (i) =>
+    deepCopyPillarSubmission(pillar.submissions[i]),
+  ),
+});
+
+/**
+ * Deep copies a submission entirely.
+ *
+ * @param {PillarSubmission} pillarSubmission The submission to copy.
+ * @return {PillarSubmission} The newly copied submission.
+ */
+export const deepCopyPillarSubmission = (pillarSubmission) => ({
+  ...pillarSubmission,
+});
 
 /**
  * Creates a new Submission for a Pillar.

@@ -71,7 +71,7 @@ export const addPillar = (pillar, index = 0) => ({
   },
 });
 
-const editPillar = (index, pillar) => ({
+export const editPillar = (index, pillar) => ({
   type: EDIT_PILLAR,
   payload: {
     index,

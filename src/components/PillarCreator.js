@@ -24,7 +24,9 @@ type Props = {
  * Creates a pillar and adds it to the redux and component state.
  *
  * @param {string} name The name of pillar to the make.
+ * @param {string} description The description for the pillar to make.
  * @param {string} color The color of the pillar to create.
+ * @param {Function} closeView Parent function to close the current view.
  * @param {Function} addPillarRedux The redux function to add a pillar to the user.
  * @param {Function} setSuccess Sets the success state
  * @param {Function} setIsLoading Sets the is loading state
@@ -33,6 +35,7 @@ type Props = {
  */
 const createPillar = (
   name,
+  description,
   color,
   closeView,
   addPillarRedux,
@@ -43,7 +46,7 @@ const createPillar = (
   setIsLoading(true);
   setTimeout(() => {
     if (name && color) {
-      const pillar = newPillar(name, color);
+      const pillar = newPillar(name, description, color);
       addPillarRedux(pillar);
       setSuccess(true);
       closeView();
@@ -101,7 +104,8 @@ export const displayError = (error) => {
  */
 const PillarCreator = ({ closeView, addPillarRedux }: Props) => {
   const [name, setName] = useState(null);
-  const [color, setColor] = useState('#fff');
+  const [description, setDescription] = useState(null);
+  const [color, setColor] = useState('#ffffff');
   const [success, setSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -112,6 +116,7 @@ const PillarCreator = ({ closeView, addPillarRedux }: Props) => {
         onSubmit={() =>
           createPillar(
             name,
+            description,
             color,
             closeView,
             addPillarRedux,
@@ -121,13 +126,23 @@ const PillarCreator = ({ closeView, addPillarRedux }: Props) => {
           )
         }
       >
-        <Header as="h3">
+        <Header> Pillar Creator </Header>
+        <Header as="h4">
           <Form.Input
             fluid
             type="text"
             name="name"
             placeholder="Name of the Pillar"
             onChange={(value) => setName(value.target.value)}
+          />
+        </Header>
+        <Header as="h5">
+          <Form.Input
+            fluid
+            type="text"
+            name="description"
+            placeholder="Description for how to complete"
+            onChange={(value) => setDescription(value.target.value)}
           />
         </Header>
         <div align="center">
@@ -161,6 +176,7 @@ const PillarCreator = ({ closeView, addPillarRedux }: Props) => {
             onClick={() =>
               createPillar(
                 name,
+                description,
                 color,
                 closeView,
                 addPillarRedux,

@@ -11,6 +11,7 @@ type Props = {
   submitting: boolean,
   addSubmissionRedux: (number, PillarSubmission) => void,
   removeSubmissionRedux: (number) => void,
+  editPillarRedux: (number, Pillar) => void,
   deletePillarRedux: (number) => void,
 };
 
@@ -32,6 +33,7 @@ const AllPillarsView = ({
   submitting,
   addSubmissionRedux,
   removeSubmissionRedux,
+  editPillarRedux,
   deletePillarRedux,
 }: Props) => {
   return (
@@ -50,6 +52,7 @@ const AllPillarsView = ({
               submitting={submitting}
               addSubmissionRedux={(s) => addSubmissionRedux(i, s)}
               removeSubmissionRedux={() => removeSubmissionRedux(i)}
+              editPillarRedux={(p) => editPillarRedux(i, p)}
               deletePillarRedux={() => deletePillarRedux(i)}
             />
           </Grid.Column>

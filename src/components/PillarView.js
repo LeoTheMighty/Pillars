@@ -8,7 +8,7 @@ import {
   newSubmission,
 } from '../logic/PillarHelper';
 import type PillarSubmission from '../types/PillarSubmission';
-import PillarDescriptionView from "./PillarDescriptionView";
+import PillarDescriptionView from './PillarDescriptionView';
 
 type Props = {
   pillar: Pillar,
@@ -16,6 +16,7 @@ type Props = {
   submitting: boolean,
   addSubmissionRedux: (PillarSubmission) => void,
   removeSubmissionRedux: () => void,
+  editPillarRedux: (Pillar) => void,
   deletePillarRedux: () => void,
 };
 
@@ -70,6 +71,7 @@ const PillarView = ({
   submitting,
   addSubmissionRedux,
   removeSubmissionRedux,
+  editPillarRedux,
   deletePillarRedux,
 }: Props) => {
   const [detailModalOpen, setDetailModalOpen] = useState(false);
@@ -92,7 +94,7 @@ const PillarView = ({
         position: 'relative',
       }}
       role="button"
-      onClick={() => !detailModalOpen && setDetailModalOpen((p) => !p)}
+      onClick={() => !submitting && !detailModalOpen && setDetailModalOpen((p) => !p)}
     >
       <div
         style={{
@@ -153,10 +155,10 @@ const PillarView = ({
         onClose={() => setDetailModalOpen(false)}
         closeIcon
       >
-        <Modal.Header>{pillar.name}</Modal.Header>
         <PillarDescriptionView
           pillar={pillar}
           closeView={() => setDetailModalOpen(false)}
+          editPillarRedux={editPillarRedux}
           deletePillarRedux={deletePillarRedux}
         />
       </Modal>

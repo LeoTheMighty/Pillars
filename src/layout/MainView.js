@@ -8,15 +8,19 @@ import type { UserReducer } from '../redux/reducers/userReducer';
 import {
   addSubmission,
   deletePillar,
+  editPillar,
   removeSubmission,
 } from '../redux/actions/userActions';
 import type PillarSubmission from '../types/PillarSubmission';
 
 type Props = {
+  // Redux State
   user: UserReducer,
   flow: FlowReducer,
+  // Redux Dispatch
   addSubmissionRedux: (number, PillarSubmission) => void,
   removeSubmissionRedux: (number) => void,
+  editPillarRedux: (number, Pillar) => void,
   deletePillarRedux: (number) => void,
 };
 
@@ -31,6 +35,7 @@ const MainView = ({
   flow,
   addSubmissionRedux,
   removeSubmissionRedux,
+  editPillarRedux,
   deletePillarRedux,
 }: Props) => {
   return (
@@ -56,6 +61,7 @@ const MainView = ({
               submitting={flow.isChecking}
               addSubmissionRedux={addSubmissionRedux}
               removeSubmissionRedux={removeSubmissionRedux}
+              editPillarRedux={editPillarRedux}
               deletePillarRedux={deletePillarRedux}
             />
           </Container>
@@ -74,6 +80,7 @@ export default connect(
     addSubmissionRedux: (index, submission) =>
       dispatch(addSubmission(index, submission)),
     removeSubmissionRedux: (index) => dispatch(removeSubmission(index)),
+    editPillarRedux: (index, pillar) => dispatch(editPillar(index, pillar)),
     deletePillarRedux: (index) => dispatch(deletePillar(index)),
   }),
 )(MainView);
