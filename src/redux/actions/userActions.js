@@ -7,19 +7,19 @@ import {
 } from '../typeConstants';
 import UserStorage from '../../api/UserStorage';
 import { newUser } from '../../logic/PillarsUserHelper';
+import {setInfoModalOpen} from "./flowActions";
 
 // For all the actions regarding the actual user using the app. (Will be used to access cloud storage of the User's
 // progress and whatnot). May use API calls to retrieve info.
 
 export const updateUser = (successHandler) => {
-  return (dispatch, getStore) => {
+  return (dispatch) => {
     let user = UserStorage.loadUser();
     if (!user) {
       alert('Generating new user!');
       user = newUser();
       UserStorage.saveUser(user);
-
-      // TODO Start up flow state!
+      dispatch(setInfoModalOpen(true));
     }
     dispatch(loadUser(user));
     successHandler && successHandler();

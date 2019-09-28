@@ -9,3 +9,4 @@ export const REMOVE_SUBMISSION = 'REMOVE_SUBMISSION';
 
 // FlowReducer Type Constants
 export const SET_CHECKING = 'SET_CHECKING';
+export const SET_INFO_MODAL_OPEN = 'SET_INFO_MODAL_OPEN';

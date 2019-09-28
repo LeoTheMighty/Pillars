@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import { Grid, Button, Container, Modal } from 'semantic-ui-react';
 import PillarCreator from '../components/PillarCreator';
 import type { FlowReducer } from '../redux/reducers/flowReducer';
-import { setIsChecking } from '../redux/actions/flowActions';
+import {setInfoModalOpen, setIsChecking} from '../redux/actions/flowActions';
 
 type Props = {
   flow: FlowReducer,
-  setIsCheckingRedux: Function,
+  setIsCheckingRedux: (boolean) => void,
+  setInfoModalOpenRedux: (boolean) => void,
 };
 
 /**
@@ -16,7 +17,7 @@ type Props = {
  * @returns {*} The jsx to display the component
  * @constructor
  */
-const PillarsHeaderView = ({ flow, setIsCheckingRedux }: Props) => {
+const PillarsHeaderView = ({ flow, setIsCheckingRedux, setInfoModalOpenRedux }: Props) => {
   const [creatorIsOpen, setCreatorIsOpen] = useState(false);
   return (
     <Container fluid>
@@ -44,6 +45,13 @@ const PillarsHeaderView = ({ flow, setIsCheckingRedux }: Props) => {
             onClick={() => setIsCheckingRedux(!flow.isChecking)}
           />
         </Grid.Column>
+        <Grid.Column>
+          <Button
+            primary
+            icon="info circle"
+            onClick={() => setInfoModalOpenRedux(true)}
+          />
+        </Grid.Column>
       </Grid>
     </Container>
   );
@@ -58,6 +66,8 @@ export default connect(
       setIsCheckingRedux: (isChecking) => {
         dispatch(setIsChecking(isChecking));
       },
+      setInfoModalOpenRedux: (infoModalOpen) =>
+        dispatch(setInfoModalOpen(infoModalOpen)),
     };
   },
 )(PillarsHeaderView);

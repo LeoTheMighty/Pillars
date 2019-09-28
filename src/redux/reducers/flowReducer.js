@@ -1,4 +1,4 @@
-import { SET_CHECKING } from "../typeConstants";
+import { SET_CHECKING, SET_INFO_MODAL_OPEN } from '../typeConstants';
 
 /**
  *
@@ -6,6 +6,8 @@ import { SET_CHECKING } from "../typeConstants";
 export type FlowReducer = {
   /** Whether the user is submitting submissions for the pillars. */
   isChecking: boolean,
+  /** Whether the intro info modal is open or not. */
+  infoModalOpen: boolean,
 };
 
 /**
@@ -15,6 +17,7 @@ export type FlowReducer = {
  */
 const initialState: FlowReducer = {
   isChecking: false,
+  infoModalOpen: false,
 };
 
 /**
@@ -38,6 +41,10 @@ export default (state: FlowReducer = initialState, action) => {
     case SET_CHECKING:
       state = copyState(state);
       state.isChecking = action.payload.isChecking;
+      break;
+    case SET_INFO_MODAL_OPEN:
+      state = copyState(state);
+      state.infoModalOpen = action.payload.infoModalOpen;
       break;
     default:
       break;

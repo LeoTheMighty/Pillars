@@ -18,10 +18,12 @@ type Props = {
 };
 
 const generateField = (label, placeholder, value, setValue, editing) =>
-  !editing ? [
-    <ModalHeader as="h5">{label}</ModalHeader>,
-    <ModalHeader as="h2">{value}</ModalHeader>
-  ] : (
+  !editing ? (
+    [
+      <ModalHeader as="h5">{label}</ModalHeader>,
+      <ModalHeader as="h2">{value}</ModalHeader>,
+    ]
+  ) : (
     <ModalHeader as="h4">
       <Form.Input
         fluid

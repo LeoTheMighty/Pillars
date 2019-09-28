@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Container, Menu } from 'semantic-ui-react';
+import { Container, Menu, Modal } from 'semantic-ui-react';
 import AllPillarsView from '../components/AllPillarsView';
 import PillarsHeaderView from './PillarsHeaderView';
 import type { FlowReducer } from '../redux/reducers/flowReducer';
@@ -12,16 +12,20 @@ import {
   removeSubmission,
 } from '../redux/actions/userActions';
 import type PillarSubmission from '../types/PillarSubmission';
+import { setInfoModalOpen } from '../redux/actions/flowActions';
+import IntroView from "./IntroView";
 
 type Props = {
   // Redux State
   user: UserReducer,
   flow: FlowReducer,
-  // Redux Dispatch
+  // User Redux Actions
   addSubmissionRedux: (number, PillarSubmission) => void,
   removeSubmissionRedux: (number) => void,
   editPillarRedux: (number, Pillar) => void,
   deletePillarRedux: (number) => void,
+  // Flow Redux Actions
+  setInfoModalOpenRedux: (boolean) => void,
 };
 
 /**
@@ -37,6 +41,7 @@ const MainView = ({
   removeSubmissionRedux,
   editPillarRedux,
   deletePillarRedux,
+  setInfoModalOpenRedux,
 }: Props) => {
   return (
     <div>
@@ -67,6 +72,13 @@ const MainView = ({
           </Container>
         </Menu.Item>
       </Menu>
+      <Modal
+        open={flow.infoModalOpen}
+        onClose={() => setInfoModalOpenRedux(false)}
+        closeIcon
+      >
+        <IntroView />
+      </Modal>
     </div>
   );
 };
@@ -77,10 +89,14 @@ export default connect(
     flow: state.flow,
   }),
   (dispatch) => ({
+    // User Actions
     addSubmissionRedux: (index, submission) =>
       dispatch(addSubmission(index, submission)),
     removeSubmissionRedux: (index) => dispatch(removeSubmission(index)),
     editPillarRedux: (index, pillar) => dispatch(editPillar(index, pillar)),
     deletePillarRedux: (index) => dispatch(deletePillar(index)),
+    // Flow Actions
+    setInfoModalOpenRedux: (infoModalOpen) =>
+      dispatch(setInfoModalOpen(infoModalOpen)),
   }),
 )(MainView);
