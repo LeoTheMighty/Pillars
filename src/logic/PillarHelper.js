@@ -126,8 +126,8 @@ const getIntervalStart = (interval, duration, nowDate) => {
  */
 export const getCurrentPillarValue = (
   pillar,
-  interval,
-  duration,
+  interval = 'week',
+  duration = 1,
   nowDate = now(),
 ) => {
   const intervalStart = getIntervalStart(interval, duration, nowDate);
@@ -145,11 +145,14 @@ export const getCurrentPillarValue = (
       break;
     }
   }
-  const totalTime = Math.min(
-    daysBetween(intervalStart, nowDate),
-    daysBetween(parseISOString(pillar.timeCreated), nowDate) + 1,
-  );
-  return summedValues / totalTime;
+  if (pillar.timeCreated) {
+    const totalTime = Math.min(
+      daysBetween(intervalStart, nowDate),
+      daysBetween(parseISOString(pillar.timeCreated), nowDate) + 1,
+    );
+    return summedValues / totalTime;
+  }
+  return summedValues / daysBetween(intervalStart, nowDate);
 };
 
 /**
