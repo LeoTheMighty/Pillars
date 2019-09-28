@@ -105,7 +105,7 @@ export const displayError = (error) => {
 const PillarCreator = ({ closeView, addPillarRedux }: Props) => {
   const [name, setName] = useState(null);
   const [description, setDescription] = useState(null);
-  const [color, setColor] = useState('#ffffff');
+  const [color, setColor] = useState('#5fcdff');
   const [success, setSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);

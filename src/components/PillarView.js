@@ -87,7 +87,7 @@ const PillarView = ({
   return (
     <div
       style={{
-        height: `${value * 75}vh`,
+        height: `${(value + 0.01) * 75}vh`,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: pillar.color,

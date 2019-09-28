@@ -13,6 +13,8 @@ type Pillar = {
   color: string,
   /** The special type of the Pillar, to handle differently in submissions/details. */
   type: string,
+  /** The time the Pillar was created. */
+  timeCreated: string,
   /**
    * The array of historical submissions done for the pillar. Should be SORTED backwards!
    *  Index 0 is the latest submission.

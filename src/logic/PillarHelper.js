@@ -25,6 +25,7 @@ export const newPillar = (name, description, color, type) => ({
   description,
   color,
   type,
+  timeCreated: convertToISOString(now()),
   submissions: [],
 });
 
@@ -133,7 +134,7 @@ export const getCurrentPillarValue = (
   let summedValues = 0;
   // TODO Get rid of this once done testing
   if (!pillar.submissions || pillar.submissions.length === 0) {
-    return 1.0;
+    return 0.0;
   }
   for (let i = 0; i < pillar.submissions.length; i += 1) {
     const submission = pillar.submissions[i];
@@ -144,7 +145,11 @@ export const getCurrentPillarValue = (
       break;
     }
   }
-  return summedValues / daysBetween(intervalStart, nowDate);
+  const totalTime = Math.min(
+    daysBetween(intervalStart, nowDate),
+    daysBetween(parseISOString(pillar.timeCreated), nowDate) + 1,
+  );
+  return summedValues / totalTime;
 };
 
 /**
