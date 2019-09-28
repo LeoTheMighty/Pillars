@@ -1,6 +1,5 @@
-import util from 'util';
 import { getCurrentPillarValue, _randomPillars } from '../PillarHelper';
-import {convertToISOString, daysBefore, now} from '../TimeHelper';
+import { convertToISOString, daysBefore, now} from '../TimeHelper';
 import type Pillar from '../../types/Pillar';
 
 const booleanPillar: Pillar = {
@@ -50,7 +49,6 @@ describe('Pillar Helper', () => {
   describe('Random Pillars', () => {
     test('should make 1 random pillar correctly', () => {
       const pillars = _randomPillars(1);
-      console.log(util.inspect(pillars, false, null, true));
       expect(pillars).toHaveLength(1);
     });
   });

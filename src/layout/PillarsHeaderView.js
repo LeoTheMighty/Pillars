@@ -3,12 +3,18 @@ import { connect } from 'react-redux';
 import { Grid, Button, Container, Modal } from 'semantic-ui-react';
 import PillarCreator from '../components/PillarCreator';
 import type { FlowReducer } from '../redux/reducers/flowReducer';
-import {setInfoModalOpen, setIsChecking} from '../redux/actions/flowActions';
+import {
+  setAdminModalOpen,
+  setInfoModalOpen,
+  setIsChecking,
+} from '../redux/actions/flowActions';
+import { isDevelopment } from '../AppVariables';
 
 type Props = {
   flow: FlowReducer,
   setIsCheckingRedux: (boolean) => void,
   setInfoModalOpenRedux: (boolean) => void,
+  setAdminModalOpenRedux: (boolean) => void,
 };
 
 /**
@@ -17,7 +23,12 @@ type Props = {
  * @returns {*} The jsx to display the component
  * @constructor
  */
-const PillarsHeaderView = ({ flow, setIsCheckingRedux, setInfoModalOpenRedux }: Props) => {
+const PillarsHeaderView = ({
+  flow,
+  setIsCheckingRedux,
+  setInfoModalOpenRedux,
+  setAdminModalOpenRedux,
+}: Props) => {
   const [creatorIsOpen, setCreatorIsOpen] = useState(false);
   return (
     <Container fluid>
@@ -52,6 +63,15 @@ const PillarsHeaderView = ({ flow, setIsCheckingRedux, setInfoModalOpenRedux }: 
             onClick={() => setInfoModalOpenRedux(true)}
           />
         </Grid.Column>
+        {isDevelopment && (
+          <Grid.Column>
+            <Button
+              primary
+              icon="adn"
+              onClick={() => setAdminModalOpenRedux(true)}
+            />
+          </Grid.Column>
+        )}
       </Grid>
     </Container>
   );
@@ -68,6 +88,8 @@ export default connect(
       },
       setInfoModalOpenRedux: (infoModalOpen) =>
         dispatch(setInfoModalOpen(infoModalOpen)),
+      setAdminModalOpenRedux: (adminModalOpen) =>
+        dispatch(setAdminModalOpen(adminModalOpen)),
     };
   },
 )(PillarsHeaderView);

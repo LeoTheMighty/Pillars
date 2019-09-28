@@ -12,8 +12,12 @@ import {
   removeSubmission,
 } from '../redux/actions/userActions';
 import type PillarSubmission from '../types/PillarSubmission';
-import { setInfoModalOpen } from '../redux/actions/flowActions';
-import IntroView from "./IntroView";
+import {
+  setAdminModalOpen,
+  setInfoModalOpen,
+} from '../redux/actions/flowActions';
+import IntroView from './IntroView';
+import AdminView from '../components/devTools/AdminView';
 
 type Props = {
   // Redux State
@@ -26,6 +30,7 @@ type Props = {
   deletePillarRedux: (number) => void,
   // Flow Redux Actions
   setInfoModalOpenRedux: (boolean) => void,
+  setAdminModalOpenRedux: (boolean) => void,
 };
 
 /**
@@ -42,6 +47,7 @@ const MainView = ({
   editPillarRedux,
   deletePillarRedux,
   setInfoModalOpenRedux,
+  setAdminModalOpenRedux,
 }: Props) => {
   return (
     <div>
@@ -79,6 +85,13 @@ const MainView = ({
       >
         <IntroView />
       </Modal>
+      <Modal
+        open={flow.adminModalOpen}
+        onClose={() => setAdminModalOpenRedux(false)}
+        closeIcon
+      >
+        <AdminView />
+      </Modal>
     </div>
   );
 };
@@ -98,5 +111,7 @@ export default connect(
     // Flow Actions
     setInfoModalOpenRedux: (infoModalOpen) =>
       dispatch(setInfoModalOpen(infoModalOpen)),
+    setAdminModalOpenRedux: (adminModalOpen) =>
+      dispatch(setAdminModalOpen(adminModalOpen)),
   }),
 )(MainView);

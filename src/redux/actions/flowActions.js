@@ -1,4 +1,8 @@
-import { SET_CHECKING, SET_INFO_MODAL_OPEN } from '../typeConstants';
+import {
+  SET_ADMIN_MODAL_OPEN,
+  SET_CHECKING,
+  SET_INFO_MODAL_OPEN,
+} from '../typeConstants';
 
 /**
  * Redux action for setting the flow isChecking.
@@ -23,5 +27,18 @@ export const setInfoModalOpen = (infoModalOpen) => ({
   type: SET_INFO_MODAL_OPEN,
   payload: {
     infoModalOpen,
+  },
+});
+
+/**
+ * Redux action for setting the admin modal open.
+ *
+ * @param {boolean} adminModalOpen Whether the admin modal is open or not.
+ * @return {{payload: {adminModalOpen: *}, type: string}} The redux action info.
+ */
+export const setAdminModalOpen = (adminModalOpen) => ({
+  type: SET_ADMIN_MODAL_OPEN,
+  payload: {
+    adminModalOpen,
   },
 });

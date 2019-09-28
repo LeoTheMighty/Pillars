@@ -1,4 +1,10 @@
-import { SET_CHECKING, SET_INFO_MODAL_OPEN } from '../typeConstants';
+import {
+  SET_ADMIN_MODAL_OPEN,
+  SET_CHECKING,
+  SET_INFO_MODAL_OPEN,
+} from '../typeConstants';
+import { isDevelopment } from '../../AppVariables';
+import { ERR } from '../../Constants';
 
 /**
  *
@@ -8,6 +14,8 @@ export type FlowReducer = {
   isChecking: boolean,
   /** Whether the intro info modal is open or not. */
   infoModalOpen: boolean,
+  /** Whether the admin modal is open or not. */
+  adminModalOpen: boolean,
 };
 
 /**
@@ -18,6 +26,7 @@ export type FlowReducer = {
 const initialState: FlowReducer = {
   isChecking: false,
   infoModalOpen: false,
+  adminModalOpen: false,
 };
 
 /**
@@ -45,6 +54,14 @@ export default (state: FlowReducer = initialState, action) => {
     case SET_INFO_MODAL_OPEN:
       state = copyState(state);
       state.infoModalOpen = action.payload.infoModalOpen;
+      break;
+    case SET_ADMIN_MODAL_OPEN:
+      state = copyState(state);
+      if (isDevelopment) {
+        state.adminModalOpen = action.payload.adminModalOpen;
+      } else {
+        ERR && console.error('Cannot open admin modal in production mode!');
+      }
       break;
     default:
       break;
