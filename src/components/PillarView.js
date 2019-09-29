@@ -94,7 +94,9 @@ const PillarView = ({
         position: 'relative',
       }}
       role="button"
-      onClick={() => !submitting && !detailModalOpen && setDetailModalOpen((p) => !p)}
+      onClick={() =>
+        !submitting && !detailModalOpen && setDetailModalOpen((p) => !p)
+      }
     >
       <div
         style={{
@@ -104,11 +106,8 @@ const PillarView = ({
         }}
       >
         <Grid stretched rows="equal" textAlign="center" verticalAlign="bottom">
-          <Grid.Row>
-            {value}
-            {'\n'}
-            {pillar.name}
-          </Grid.Row>
+          <Grid.Row>{(value * 100).toFixed(0)}%</Grid.Row>
+          <Grid.Row>{pillar.name}</Grid.Row>
           <Grid.Row>
             {submitting && (
               <Checkbox
