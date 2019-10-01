@@ -2,6 +2,8 @@ import {
   SET_ADMIN_MODAL_OPEN,
   SET_CHECKING,
   SET_INFO_MODAL_OPEN,
+  SET_INTERVAL_SPAN,
+  SET_INTERVAL_VIEW,
 } from '../typeConstants';
 
 /**
@@ -40,5 +42,31 @@ export const setAdminModalOpen = (adminModalOpen) => ({
   type: SET_ADMIN_MODAL_OPEN,
   payload: {
     adminModalOpen,
+  },
+});
+
+/**
+ * Redux action for setting the current interval view.
+ *
+ * @param {string} intervalView The type of interval to view the pillars at.
+ * @returns {{payload: {intervalView: *}, type: *}} The redux action info.
+ */
+export const setIntervalView = (intervalView) => ({
+  type: SET_INTERVAL_VIEW,
+  payload: {
+    intervalView,
+  },
+});
+
+/**
+ * Redux action for setting the current interval span.
+ *
+ * @param {string} intervalSpan The number of interval spans to view the pillars at.
+ * @returns {{payload: {intervalSpan: *}, type: *}} The redux action info.
+ */
+export const setIntervalSpan = (intervalSpan) => ({
+  type: SET_INTERVAL_SPAN,
+  payload: {
+    intervalSpan,
   },
 });

@@ -8,6 +8,7 @@ import type PillarSubmission from '../types/PillarSubmission';
 type Props = {
   pillars: [Pillar],
   intervalView: string,
+  intervalSpan: number,
   submitting: boolean,
   addSubmissionRedux: (number, PillarSubmission) => void,
   removeSubmissionRedux: (number) => void,
@@ -30,6 +31,7 @@ type Props = {
 const AllPillarsView = ({
   pillars,
   intervalView,
+  intervalSpan,
   submitting,
   addSubmissionRedux,
   removeSubmissionRedux,
@@ -49,6 +51,7 @@ const AllPillarsView = ({
             <PillarView
               pillar={pillars[i]}
               intervalView={intervalView}
+              intervalSpan={intervalSpan}
               submitting={submitting}
               addSubmissionRedux={(s) => addSubmissionRedux(i, s)}
               removeSubmissionRedux={() => removeSubmissionRedux(i)}

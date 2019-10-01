@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Grid, Button, Container, Modal } from 'semantic-ui-react';
+import {Grid, Button, Container, Dropdown, Modal, Input} from 'semantic-ui-react';
 import PillarCreator from '../components/PillarCreator';
 import type { FlowReducer } from '../redux/reducers/flowReducer';
 import {
   setAdminModalOpen,
   setInfoModalOpen,
+  setIntervalView,
+  setIntervalSpan,
   setIsChecking,
 } from '../redux/actions/flowActions';
 import { isDevelopment } from '../AppVariables';
@@ -15,6 +17,8 @@ type Props = {
   setIsCheckingRedux: (boolean) => void,
   setInfoModalOpenRedux: (boolean) => void,
   setAdminModalOpenRedux: (boolean) => void,
+  setIntervalViewRedux: (string) => void,
+  setIntervalSpanRedux: (number) => void,
 };
 
 /**
@@ -28,11 +32,30 @@ const PillarsHeaderView = ({
   setIsCheckingRedux,
   setInfoModalOpenRedux,
   setAdminModalOpenRedux,
+  setIntervalViewRedux,
+  setIntervalSpanRedux,
 }: Props) => {
   const [creatorIsOpen, setCreatorIsOpen] = useState(false);
   return (
     <Container fluid>
       <Grid columns="equal">
+        <Grid.Column>
+          <Dropdown
+            value={flow.currentIntervalView}
+            selection
+            options={[
+              { key: 'week', value: 'week', text: 'Weekly View' },
+              { key: 'month', value: 'month', text: 'Monthly View' },
+              { key: 'start', value: 'start', text: 'Since Pillar Start' },
+            ]}
+            onChange={(e, { value }) => setIntervalViewRedux(value)}
+          />
+          <Input
+            value={flow.currentIntervalSpan}
+            onChange={(e) => setIntervalSpanRedux(e.target.value)}
+            type="number"
+          />
+        </Grid.Column>
         <Grid.Column>
           <Button
             icon=""
@@ -90,6 +113,10 @@ export default connect(
         dispatch(setInfoModalOpen(infoModalOpen)),
       setAdminModalOpenRedux: (adminModalOpen) =>
         dispatch(setAdminModalOpen(adminModalOpen)),
+      setIntervalSpanRedux: (intervalSpan) =>
+        dispatch(setIntervalSpan(intervalSpan)),
+      setIntervalViewRedux: (intervalView) =>
+        dispatch(setIntervalView(intervalView)),
     };
   },
 )(PillarsHeaderView);

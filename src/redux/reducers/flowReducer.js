@@ -2,6 +2,8 @@ import {
   SET_ADMIN_MODAL_OPEN,
   SET_CHECKING,
   SET_INFO_MODAL_OPEN,
+  SET_INTERVAL_SPAN,
+  SET_INTERVAL_VIEW,
 } from '../typeConstants';
 import { isDevelopment } from '../../AppVariables';
 import { ERR } from '../../Constants';
@@ -16,6 +18,10 @@ export type FlowReducer = {
   infoModalOpen: boolean,
   /** Whether the admin modal is open or not. */
   adminModalOpen: boolean,
+  /** The current interval being viewed in the pillars. */
+  currentIntervalView: string,
+  /** The current number of interval span are being viewed in the pillars. */
+  currentIntervalSpan: number,
 };
 
 /**
@@ -27,6 +33,8 @@ const initialState: FlowReducer = {
   isChecking: false,
   infoModalOpen: false,
   adminModalOpen: false,
+  currentIntervalView: 'week',
+  currentIntervalSpan: 1,
 };
 
 /**
@@ -62,6 +70,14 @@ export default (state: FlowReducer = initialState, action) => {
       } else {
         ERR && console.error('Cannot open admin modal in production mode!');
       }
+      break;
+    case SET_INTERVAL_VIEW:
+      state = copyState(state);
+      state.currentIntervalView = action.payload.intervalView;
+      break;
+    case SET_INTERVAL_SPAN:
+      state = copyState(state);
+      state.currentIntervalSpan = action.payload.intervalSpan;
       break;
     default:
       break;

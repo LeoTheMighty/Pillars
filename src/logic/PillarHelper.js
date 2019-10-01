@@ -130,9 +130,11 @@ export const getCurrentPillarValue = (
   duration = 1,
   nowDate = now(),
 ) => {
-  const intervalStart = getIntervalStart(interval, duration, nowDate);
+  const intervalStart =
+    interval === 'start'
+      ? daysBefore(1, parseISOString(pillar.timeCreated))
+      : getIntervalStart(interval, duration, nowDate);
   let summedValues = 0;
-  // TODO Get rid of this once done testing
   if (!pillar.submissions || pillar.submissions.length === 0) {
     return 0.0;
   }

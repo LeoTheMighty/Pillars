@@ -68,7 +68,8 @@ const MainView = ({
           <Container fluid>
             <AllPillarsView
               pillars={user.user.pillars}
-              intervalView="week"
+              intervalView={flow.currentIntervalView}
+              intervalSpan={flow.currentIntervalSpan}
               submitting={flow.isChecking}
               addSubmissionRedux={addSubmissionRedux}
               removeSubmissionRedux={removeSubmissionRedux}

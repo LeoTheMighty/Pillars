@@ -13,6 +13,7 @@ import PillarDescriptionView from './PillarDescriptionView';
 type Props = {
   pillar: Pillar,
   intervalView: string,
+  intervalSpan: number,
   submitting: boolean,
   addSubmissionRedux: (PillarSubmission) => void,
   removeSubmissionRedux: () => void,
@@ -68,6 +69,7 @@ const handlePillarUncheckConfirm = (
 const PillarView = ({
   pillar,
   intervalView,
+  intervalSpan,
   submitting,
   addSubmissionRedux,
   removeSubmissionRedux,
@@ -81,7 +83,7 @@ const PillarView = ({
 
   useEffect(() => {
     setChecked(isSubmitted(pillar, now()));
-    setValue(getCurrentPillarValue(pillar, intervalView, 1));
+    setValue(getCurrentPillarValue(pillar, intervalView, intervalSpan));
   }, [pillar.submissions, intervalView, checked]);
 
   return (
