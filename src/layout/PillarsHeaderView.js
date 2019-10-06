@@ -44,17 +44,20 @@ const PillarsHeaderView = ({
             value={flow.currentIntervalView}
             selection
             options={[
+              { key: 'day', value: 'day', text: 'Daily View' },
               { key: 'week', value: 'week', text: 'Weekly View' },
               { key: 'month', value: 'month', text: 'Monthly View' },
               { key: 'start', value: 'start', text: 'Since Pillar Start' },
             ]}
             onChange={(e, { value }) => setIntervalViewRedux(value)}
           />
-          <Input
-            value={flow.currentIntervalSpan}
-            onChange={(e) => setIntervalSpanRedux(e.target.value)}
-            type="number"
-          />
+          {flow.currentIntervalView === 'start' ||
+            <Input
+              value={flow.currentIntervalSpan}
+              onChange={(e) => setIntervalSpanRedux(e.target.value)}
+              type="number"
+            />
+          }
         </Grid.Column>
         <Grid.Column>
           <Button
