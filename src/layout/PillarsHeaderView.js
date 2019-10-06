@@ -44,7 +44,9 @@ const PillarsHeaderView = ({
   setIntervalSpanRedux,
 }: Props) => {
   const [creatorIsOpen, setCreatorIsOpen] = useState(false);
-  const [intervalViewChangerIsOpen, setIntervalViewChangerIsOpen] = useState(false);
+  const [intervalViewChangerIsOpen, setIntervalViewChangerIsOpen] = useState(
+    false,
+  );
   return (
     <Container fluid>
       <Grid columns="equal">
@@ -73,20 +75,24 @@ const PillarsHeaderView = ({
                       { key: 'day', value: 'day', text: 'Daily View' },
                       { key: 'week', value: 'week', text: 'Weekly View' },
                       { key: 'month', value: 'month', text: 'Monthly View' },
-                      { key: 'start', value: 'start', text: 'Since Pillar Start' },
+                      {
+                        key: 'start',
+                        value: 'start',
+                        text: 'Since Pillar Start',
+                      },
                     ]}
                     onChange={(e, { value }) => setIntervalViewRedux(value)}
                   />
                 </Grid.Column>
                 <Grid.Column>
-                  {flow.currentIntervalView === 'start' ||
+                  {flow.currentIntervalView === 'start' || (
                     <Input
                       label={`How many ${flow.currentIntervalView}s`}
                       value={flow.currentIntervalSpan}
                       onChange={(e) => setIntervalSpanRedux(e.target.value)}
                       type="number"
                     />
-                  }
+                  )}
                 </Grid.Column>
               </Grid>
             </Modal.Content>
@@ -94,12 +100,10 @@ const PillarsHeaderView = ({
         </Grid.Column>
         <Grid.Column>
           <Button
-            icon=""
+            icon="plus"
             primary
             onClick={() => creatorIsOpen || setCreatorIsOpen(true)}
-          >
-            Create New Pillar
-          </Button>
+          />
           <Modal
             closeIcon
             open={creatorIsOpen}
