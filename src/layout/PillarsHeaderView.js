@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import {Grid, Button, Container, Dropdown, Modal, Input} from 'semantic-ui-react';
+import { Breakpoint } from 'react-socks';
+import {
+  Grid,
+  Button,
+  Container,
+  Dropdown,
+  Modal,
+  Input,
+} from 'semantic-ui-react';
 import PillarCreator from '../components/PillarCreator';
 import type { FlowReducer } from '../redux/reducers/flowReducer';
 import {
@@ -36,28 +44,53 @@ const PillarsHeaderView = ({
   setIntervalSpanRedux,
 }: Props) => {
   const [creatorIsOpen, setCreatorIsOpen] = useState(false);
+  const [intervalViewChangerIsOpen, setIntervalViewChangerIsOpen] = useState(false);
   return (
     <Container fluid>
       <Grid columns="equal">
         <Grid.Column>
-          <Dropdown
-            value={flow.currentIntervalView}
-            selection
-            options={[
-              { key: 'day', value: 'day', text: 'Daily View' },
-              { key: 'week', value: 'week', text: 'Weekly View' },
-              { key: 'month', value: 'month', text: 'Monthly View' },
-              { key: 'start', value: 'start', text: 'Since Pillar Start' },
-            ]}
-            onChange={(e, { value }) => setIntervalViewRedux(value)}
+          <Button
+            primary
+            icon="eye"
+            onClick={() =>
+              intervalViewChangerIsOpen || setIntervalViewChangerIsOpen(true)
+            }
           />
-          {flow.currentIntervalView === 'start' ||
-            <Input
-              value={flow.currentIntervalSpan}
-              onChange={(e) => setIntervalSpanRedux(e.target.value)}
-              type="number"
-            />
-          }
+          <Modal
+            open={intervalViewChangerIsOpen}
+            onClose={() => setIntervalViewChangerIsOpen(false)}
+            closeIcon
+          >
+            <Modal.Header>Choose the Pillar View</Modal.Header>
+            <Modal.Content>
+              <Grid columns="equal">
+                <Grid.Column>
+                  <Dropdown
+                    label="Type of interval"
+                    value={flow.currentIntervalView}
+                    selection
+                    options={[
+                      { key: 'day', value: 'day', text: 'Daily View' },
+                      { key: 'week', value: 'week', text: 'Weekly View' },
+                      { key: 'month', value: 'month', text: 'Monthly View' },
+                      { key: 'start', value: 'start', text: 'Since Pillar Start' },
+                    ]}
+                    onChange={(e, { value }) => setIntervalViewRedux(value)}
+                  />
+                </Grid.Column>
+                <Grid.Column>
+                  {flow.currentIntervalView === 'start' ||
+                    <Input
+                      label={`How many ${flow.currentIntervalView}s`}
+                      value={flow.currentIntervalSpan}
+                      onChange={(e) => setIntervalSpanRedux(e.target.value)}
+                      type="number"
+                    />
+                  }
+                </Grid.Column>
+              </Grid>
+            </Modal.Content>
+          </Modal>
         </Grid.Column>
         <Grid.Column>
           <Button
