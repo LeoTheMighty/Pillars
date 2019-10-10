@@ -2,6 +2,10 @@
          Site Overrides
 *******************************/
 
+.ui.menu {
+  background: linear-gradient(to right, red, blue);
+}
+
 /*--------------
      Active
 ---------------*/
@@ -9,7 +13,7 @@
 .ui.menu .active.item,
 .ui.menu a.item:hover,
 .ui.menu .active.item:hover  {
-  color: @primaryColor;
+  color: #000;
 }
 
 .ui.menu.fixed.top {

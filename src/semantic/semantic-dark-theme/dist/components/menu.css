@@ -2052,6 +2052,11 @@ Floated Menu / Item
          Site Overrides
 *******************************/
 
+.ui.menu {
+  background: -webkit-gradient(linear, left top, right top, from(red), to(blue));
+  background: -webkit-linear-gradient(left, red, blue);
+  background: linear-gradient(to right, red, blue);
+}
 
 /*--------------
      Active
@@ -2060,7 +2065,7 @@ Floated Menu / Item
 .ui.menu .active.item,
 .ui.menu a.item:hover,
 .ui.menu .active.item:hover {
-  color: #7F47AE;
+  color: #000;
 }
 .ui.menu.fixed.top {
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);

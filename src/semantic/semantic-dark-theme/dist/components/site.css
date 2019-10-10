@@ -203,7 +203,9 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 *******************************/
 
 body {
-  background-color: #49465f;
+  background: -webkit-gradient(linear, left top, right bottom, from(#000), color-stop(#111), color-stop(#111), color-stop(#111), color-stop(#111), color-stop(#111), color-stop(#111), color-stop(#222), to(#666));
+  background: -webkit-linear-gradient(top left, #000, #111, #111, #111, #111, #111, #111, #222, #666);
+  background: linear-gradient(to bottom right, #000, #111, #111, #111, #111, #111, #111, #222, #666);
 }
 .u-bg--primaryGradient {
   background-image: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8) !important;
@@ -244,7 +246,9 @@ body {
   font-weight: normal !important;
 }
 .u-bg--bg {
-  background: #49465f !important;
+  background: -webkit-gradient(linear, left top, right bottom, from(#000), color-stop(#111), color-stop(#111), color-stop(#111), color-stop(#111), color-stop(#111), color-stop(#111), color-stop(#222), to(#666)) !important;
+  background: -webkit-linear-gradient(top left, #000, #111, #111, #111, #111, #111, #111, #222, #666) !important;
+  background: linear-gradient(to bottom right, #000, #111, #111, #111, #111, #111, #111, #222, #666) !important;
 }
 .u-bg--primary {
   background: #7F47AE !important;

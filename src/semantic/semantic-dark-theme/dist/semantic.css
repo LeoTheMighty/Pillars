@@ -761,7 +761,9 @@ body .ui.inverted::-webkit-scrollbar-thumb:hover {
 *******************************/
 
 body {
-  background-color: #49465f;
+  background: -webkit-gradient(linear, left top, right bottom, from(#000), color-stop(#111), color-stop(#111), color-stop(#111), color-stop(#111), color-stop(#111), color-stop(#111), color-stop(#222), to(#666));
+  background: -webkit-linear-gradient(top left, #000, #111, #111, #111, #111, #111, #111, #222, #666);
+  background: linear-gradient(to bottom right, #000, #111, #111, #111, #111, #111, #111, #222, #666);
 }
 
 .u-bg--primaryGradient {
@@ -812,7 +814,9 @@ body {
 }
 
 .u-bg--bg {
-  background: #49465f !important;
+  background: -webkit-gradient(linear, left top, right bottom, from(#000), color-stop(#111), color-stop(#111), color-stop(#111), color-stop(#111), color-stop(#111), color-stop(#111), color-stop(#222), to(#666)) !important;
+  background: -webkit-linear-gradient(top left, #000, #111, #111, #111, #111, #111, #111, #222, #666) !important;
+  background: linear-gradient(to bottom right, #000, #111, #111, #111, #111, #111, #111, #222, #666) !important;
 }
 
 .u-bg--primary {
@@ -26188,6 +26192,12 @@ Floated Menu / Item
          Site Overrides
 *******************************/
 
+.ui.menu {
+  background: -webkit-gradient(linear, left top, right top, from(red), to(blue));
+  background: -webkit-linear-gradient(left, red, blue);
+  background: linear-gradient(to right, red, blue);
+}
+
 /*--------------
      Active
 ---------------*/
@@ -26195,7 +26205,7 @@ Floated Menu / Item
 .ui.menu .active.item,
 .ui.menu a.item:hover,
 .ui.menu .active.item:hover {
-  color: #7F47AE;
+  color: #000;
 }
 
 .ui.menu.fixed.top {
