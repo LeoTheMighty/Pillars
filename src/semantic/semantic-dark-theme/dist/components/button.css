@@ -465,8 +465,8 @@
   background-color: #3B5998;
   color: #ffffff;
   text-shadow: none;
-  background-image: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background-image: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background-image: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background-image: linear-gradient(135deg, #000, #2d2d2d);
   -webkit-box-shadow: 0px 0em 0px 0px #3b3d4d inset;
           box-shadow: 0px 0em 0px 0px #3b3d4d inset;
 }
@@ -486,8 +486,8 @@
   background-color: #55ACEE;
   color: #ffffff;
   text-shadow: none;
-  background-image: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background-image: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background-image: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background-image: linear-gradient(135deg, #000, #2d2d2d);
   -webkit-box-shadow: 0px 0em 0px 0px #3b3d4d inset;
           box-shadow: 0px 0em 0px 0px #3b3d4d inset;
 }
@@ -507,8 +507,8 @@
   background-color: #DD4B39;
   color: #ffffff;
   text-shadow: none;
-  background-image: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background-image: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background-image: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background-image: linear-gradient(135deg, #000, #2d2d2d);
   -webkit-box-shadow: 0px 0em 0px 0px #3b3d4d inset;
           box-shadow: 0px 0em 0px 0px #3b3d4d inset;
 }
@@ -545,8 +545,8 @@
   background-color: #FF0000;
   color: #ffffff;
   text-shadow: none;
-  background-image: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background-image: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background-image: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background-image: linear-gradient(135deg, #000, #2d2d2d);
   -webkit-box-shadow: 0px 0em 0px 0px #3b3d4d inset;
           box-shadow: 0px 0em 0px 0px #3b3d4d inset;
 }
@@ -566,8 +566,8 @@
   background-color: #49769C;
   color: #ffffff;
   text-shadow: none;
-  background-image: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background-image: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background-image: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background-image: linear-gradient(135deg, #000, #2d2d2d);
   -webkit-box-shadow: 0px 0em 0px 0px #3b3d4d inset;
           box-shadow: 0px 0em 0px 0px #3b3d4d inset;
 }
@@ -587,8 +587,8 @@
   background-color: #BD081C;
   color: #ffffff;
   text-shadow: none;
-  background-image: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background-image: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background-image: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background-image: linear-gradient(135deg, #000, #2d2d2d);
   -webkit-box-shadow: 0px 0em 0px 0px #3b3d4d inset;
           box-shadow: 0px 0em 0px 0px #3b3d4d inset;
 }
@@ -607,8 +607,8 @@
 .ui.vk.button {
   background-color: #4D7198;
   color: #ffffff;
-  background-image: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background-image: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background-image: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background-image: linear-gradient(135deg, #000, #2d2d2d);
   -webkit-box-shadow: 0px 0em 0px 0px #3b3d4d inset;
           box-shadow: 0px 0em 0px 0px #3b3d4d inset;
 }
@@ -1283,8 +1283,8 @@
   background-color: #25252f;
   color: #ffffff;
   text-shadow: none;
-  background-image: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background-image: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background-image: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background-image: linear-gradient(135deg, #000, #2d2d2d);
 }
 .ui.black.button {
   -webkit-box-shadow: 0px 0em 0px 0px #3b3d4d inset;
@@ -1437,8 +1437,8 @@
   background-color: #767676;
   color: #ffffff;
   text-shadow: none;
-  background-image: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background-image: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background-image: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background-image: linear-gradient(135deg, #000, #2d2d2d);
 }
 .ui.grey.button {
   -webkit-box-shadow: 0px 0em 0px 0px #3b3d4d inset;
@@ -1591,8 +1591,8 @@
   background-color: #A5673F;
   color: #ffffff;
   text-shadow: none;
-  background-image: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background-image: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background-image: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background-image: linear-gradient(135deg, #000, #2d2d2d);
 }
 .ui.brown.button {
   -webkit-box-shadow: 0px 0em 0px 0px #3b3d4d inset;
@@ -1745,8 +1745,8 @@
   background-color: #2185D0;
   color: #ffffff;
   text-shadow: none;
-  background-image: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background-image: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background-image: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background-image: linear-gradient(135deg, #000, #2d2d2d);
 }
 .ui.blue.button {
   -webkit-box-shadow: 0px 0em 0px 0px #3b3d4d inset;
@@ -1899,8 +1899,8 @@
   background-color: #21BA45;
   color: #ffffff;
   text-shadow: none;
-  background-image: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background-image: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background-image: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background-image: linear-gradient(135deg, #000, #2d2d2d);
 }
 .ui.green.button {
   -webkit-box-shadow: 0px 0em 0px 0px #3b3d4d inset;
@@ -2053,8 +2053,8 @@
   background-color: #F2711C;
   color: #ffffff;
   text-shadow: none;
-  background-image: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background-image: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background-image: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background-image: linear-gradient(135deg, #000, #2d2d2d);
 }
 .ui.orange.button {
   -webkit-box-shadow: 0px 0em 0px 0px #3b3d4d inset;
@@ -2207,8 +2207,8 @@
   background-color: #E03997;
   color: #ffffff;
   text-shadow: none;
-  background-image: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background-image: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background-image: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background-image: linear-gradient(135deg, #000, #2d2d2d);
 }
 .ui.pink.button {
   -webkit-box-shadow: 0px 0em 0px 0px #3b3d4d inset;
@@ -2361,8 +2361,8 @@
   background-color: #6435C9;
   color: #ffffff;
   text-shadow: none;
-  background-image: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background-image: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background-image: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background-image: linear-gradient(135deg, #000, #2d2d2d);
 }
 .ui.violet.button {
   -webkit-box-shadow: 0px 0em 0px 0px #3b3d4d inset;
@@ -2515,8 +2515,8 @@
   background-color: #A333C8;
   color: #ffffff;
   text-shadow: none;
-  background-image: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background-image: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background-image: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background-image: linear-gradient(135deg, #000, #2d2d2d);
 }
 .ui.purple.button {
   -webkit-box-shadow: 0px 0em 0px 0px #3b3d4d inset;
@@ -2669,8 +2669,8 @@
   background-color: #DB2828;
   color: #ffffff;
   text-shadow: none;
-  background-image: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background-image: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background-image: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background-image: linear-gradient(135deg, #000, #2d2d2d);
 }
 .ui.red.button {
   -webkit-box-shadow: 0px 0em 0px 0px #3b3d4d inset;
@@ -2823,8 +2823,8 @@
   background-color: #00B5AD;
   color: #ffffff;
   text-shadow: none;
-  background-image: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background-image: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background-image: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background-image: linear-gradient(135deg, #000, #2d2d2d);
 }
 .ui.teal.button {
   -webkit-box-shadow: 0px 0em 0px 0px #3b3d4d inset;
@@ -2977,8 +2977,8 @@
   background-color: #B5CC18;
   color: #ffffff;
   text-shadow: none;
-  background-image: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background-image: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background-image: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background-image: linear-gradient(135deg, #000, #2d2d2d);
 }
 .ui.olive.button {
   -webkit-box-shadow: 0px 0em 0px 0px #3b3d4d inset;
@@ -3131,8 +3131,8 @@
   background-color: #FBBD08;
   color: #ffffff;
   text-shadow: none;
-  background-image: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background-image: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background-image: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background-image: linear-gradient(135deg, #000, #2d2d2d);
 }
 .ui.yellow.button {
   -webkit-box-shadow: 0px 0em 0px 0px #3b3d4d inset;
@@ -3290,8 +3290,8 @@
   background-color: #7F47AE;
   color: #ffffff;
   text-shadow: none;
-  background-image: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background-image: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background-image: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background-image: linear-gradient(135deg, #000, #2d2d2d);
 }
 .ui.primary.button {
   -webkit-box-shadow: 0px 0em 0px 0px #3b3d4d inset;
@@ -3448,8 +3448,8 @@
   background-color: #25252f;
   color: #ffffff;
   text-shadow: none;
-  background-image: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background-image: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background-image: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background-image: linear-gradient(135deg, #000, #2d2d2d);
 }
 .ui.secondary.button {
   -webkit-box-shadow: 0px 0em 0px 0px #3b3d4d inset;
@@ -3606,8 +3606,8 @@
   background-color: #21BA45;
   color: #ffffff;
   text-shadow: none;
-  background-image: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background-image: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background-image: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background-image: linear-gradient(135deg, #000, #2d2d2d);
 }
 .ui.positive.button {
   -webkit-box-shadow: 0px 0em 0px 0px #3b3d4d inset;
@@ -3689,8 +3689,8 @@
   background-color: #DB2828;
   color: #ffffff;
   text-shadow: none;
-  background-image: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background-image: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background-image: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background-image: linear-gradient(135deg, #000, #2d2d2d);
 }
 .ui.negative.button {
   -webkit-box-shadow: 0px 0em 0px 0px #3b3d4d inset;

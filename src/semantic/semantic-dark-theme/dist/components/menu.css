@@ -1454,8 +1454,8 @@ Floated Menu / Item
 /*--- Active ---*/
 
 .ui.inverted.menu .active.item {
-  background: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background: linear-gradient(135deg, #000, #2d2d2d);
   color: #ffffff !important;
 }
 .ui.inverted.vertical.menu .item .menu .active.item {
@@ -1473,8 +1473,8 @@ Floated Menu / Item
 /*--- Active Hover ---*/
 
 .ui.inverted.menu .active.item:hover {
-  background: -webkit-linear-gradient(315deg, #7F47AE, #7D82B8);
-  background: linear-gradient(135deg, #7F47AE, #7D82B8);
+  background: -webkit-linear-gradient(315deg, #000, #2d2d2d);
+  background: linear-gradient(135deg, #000, #2d2d2d);
   color: #ffffff !important;
 }
 .ui.inverted.pointing.menu .active.item:hover:after {
@@ -2052,11 +2052,6 @@ Floated Menu / Item
          Site Overrides
 *******************************/
 
-.ui.menu {
-  background: -webkit-gradient(linear, left top, right top, from(red), to(blue));
-  background: -webkit-linear-gradient(left, red, blue);
-  background: linear-gradient(to right, red, blue);
-}
 
 /*--------------
      Active

@@ -2,10 +2,6 @@
          Site Overrides
 *******************************/
 
-.ui.menu {
-  background: linear-gradient(to right, red, blue);
-}
-
 /*--------------
      Active
 ---------------*/

@@ -83,7 +83,8 @@ const PillarView = ({
 
   useEffect(() => {
     setChecked(isSubmitted(pillar, now()));
-    setValue(getCurrentPillarValue(pillar, intervalView, intervalSpan));
+    // setValue(getCurrentPillarValue(pillar, intervalView, intervalSpan));
+    setValue(1.0);
   }, [pillar.submissions, intervalView, checked]);
 
   return (
@@ -92,7 +93,8 @@ const PillarView = ({
         height: `${(value + 0.01) * 75}vh`,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: pillar.color,
+        // backgroundColor: pillar.color,
+        background: `linear-gradient(to bottom right, ${pillar.color}, ${pillar.color}, white, ${pillar.color}, ${pillar.color}, ${pillar.color}, ${pillar.color}, ${pillar.color}, ${pillar.color}, ${pillar.color}, ${pillar.color}, ${pillar.color}, white, ${pillar.color})`,
         position: 'relative',
       }}
       role="button"

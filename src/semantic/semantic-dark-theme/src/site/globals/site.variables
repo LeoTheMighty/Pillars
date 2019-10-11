@@ -4,7 +4,7 @@
 
 // Out of scope vars (not in Semantic)
 
-@primaryGradient: linear-gradient(135deg, #7F47AE, #7D82B8);
+@primaryGradient: linear-gradient(135deg, #000, #2d2d2d);
 @bgColor: linear-gradient(to bottom right, #000, #111, #111, #111, #111, #111, #111, #222, #666);
 
 /** In-scope Vars
