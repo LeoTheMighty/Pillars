@@ -126,7 +126,6 @@ const PillarCreator = ({ closeView, addPillarRedux }: Props) => {
           )
         }
       >
-        <Header> Pillar Creator </Header>
         <Header as="h4">
           <Form.Input
             fluid

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './index.css';
 import './semantic/semantic-dark-theme/dist/semantic.min.css';
 import { BreakpointProvider } from 'react-socks';
 import { Provider } from 'react-redux';

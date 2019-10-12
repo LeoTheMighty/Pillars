@@ -83,8 +83,7 @@ const PillarView = ({
 
   useEffect(() => {
     setChecked(isSubmitted(pillar, now()));
-    // setValue(getCurrentPillarValue(pillar, intervalView, intervalSpan));
-    setValue(1.0);
+    setValue(getCurrentPillarValue(pillar, intervalView, intervalSpan));
   }, [pillar.submissions, intervalView, checked]);
 
   return (

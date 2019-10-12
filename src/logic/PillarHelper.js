@@ -198,8 +198,7 @@ export const _randomPillars = (numPillars = 3, maxNumSubmissions = 10) => {
         value: Math.random(),
         time_submitted: convertToISOString(daysBefore(numberOfDaysBefore)),
       });
-      numberOfDaysBefore +=
-        Math.floor(Math.random() * maxSubmissionInterval);
+      numberOfDaysBefore += Math.floor(Math.random() * maxSubmissionInterval);
     }
     pillars.push(pillar);
   }

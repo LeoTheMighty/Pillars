@@ -7,7 +7,7 @@ import {
   Container,
   Dropdown,
   Modal,
-  Input,
+  Input, Label,
 } from 'semantic-ui-react';
 import PillarCreator from '../components/PillarCreator';
 import type { FlowReducer } from '../redux/reducers/flowReducer';
@@ -85,14 +85,17 @@ const PillarsHeaderView = ({
                   />
                 </Grid.Column>
                 <Grid.Column>
-                  {flow.currentIntervalView === 'start' || (
+                  {flow.currentIntervalView === 'start' || [
+                    <Label color="black">{`How many ${flow.currentIntervalView}s`}</Label>,
                     <Input
-                      label={`How many ${flow.currentIntervalView}s`}
                       value={flow.currentIntervalSpan}
-                      onChange={(e) => setIntervalSpanRedux(e.target.value)}
+                      onChange={(e) =>
+                        e.target.value > 0 &&
+                        setIntervalSpanRedux(e.target.value)
+                      }
                       type="number"
-                    />
-                  )}
+                    />,
+                  ]}
                 </Grid.Column>
               </Grid>
             </Modal.Content>
@@ -109,7 +112,10 @@ const PillarsHeaderView = ({
             open={creatorIsOpen}
             onClose={() => setCreatorIsOpen(false)}
           >
-            <PillarCreator closeView={() => setCreatorIsOpen(false)} />
+            <Modal.Header>Pillar Creator</Modal.Header>
+            <Modal.Content>
+              <PillarCreator closeView={() => setCreatorIsOpen(false)} />
+            </Modal.Content>
           </Modal>
         </Grid.Column>
         <Grid.Column>
