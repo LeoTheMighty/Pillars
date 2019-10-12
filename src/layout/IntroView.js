@@ -1,5 +1,5 @@
 import React from 'react';
-import {ModalContent, ModalHeader} from 'semantic-ui-react';
+import {Modal} from 'semantic-ui-react';
 
 /**
  * Displays information about how to use the app and what its purpose is.
@@ -10,10 +10,10 @@ import {ModalContent, ModalHeader} from 'semantic-ui-react';
 const IntroView = () => {
   return (
     <div>
-      <ModalHeader as="h1">
+      <Modal.Header as="h1">
         Welcome to <b>Pillars!</b>
-      </ModalHeader>
-      <ModalContent>
+      </Modal.Header>
+      <Modal.Content>
         <h3> Overview </h3>
         <p>
           This is an app that{"'"}s dedicated to the <i>consistency</i> of
@@ -33,7 +33,7 @@ const IntroView = () => {
           the process of accomplishing them will help you have a more fulfilling
           and engaging life.
         </p>
-      </ModalContent>
+      </Modal.Content>
     </div>
   );
 };

@@ -156,13 +156,17 @@ const PillarView = ({
         open={detailModalOpen}
         onClose={() => setDetailModalOpen(false)}
         closeIcon
+        centered
       >
-        <PillarDescriptionView
-          pillar={pillar}
-          closeView={() => setDetailModalOpen(false)}
-          editPillarRedux={editPillarRedux}
-          deletePillarRedux={deletePillarRedux}
-        />
+        <Modal.Header>{pillar.name}</Modal.Header>
+        <Modal.Content>
+          <PillarDescriptionView
+            pillar={pillar}
+            closeView={() => setDetailModalOpen(false)}
+            editPillarRedux={editPillarRedux}
+            deletePillarRedux={deletePillarRedux}
+          />
+        </Modal.Content>
       </Modal>
     </div>
   );

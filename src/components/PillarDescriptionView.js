@@ -67,22 +67,20 @@ const PillarDescriptionView = ({
 
   return (
     <div>
-      <ModalContent>
-        {generateField(
-          'Name',
-          'Name For The Pillar',
-          currentPillar.name,
-          (v) => setPillarValue('name', v),
-          isEditing,
-        )}
-        {generateField(
-          'Description',
-          'Description For The Pillar',
-          currentPillar.description,
-          (v) => setPillarValue('description', v),
-          isEditing,
-        )}
-      </ModalContent>
+      {generateField(
+        'Name',
+        'Name For The Pillar',
+        currentPillar.name,
+        (v) => setPillarValue('name', v),
+        isEditing,
+      )}
+      {generateField(
+        'Description',
+        'Description For The Pillar',
+        currentPillar.description,
+        (v) => setPillarValue('description', v),
+        isEditing,
+      )}
       <Button
         primary={!isEditing}
         icon={isEditing ? 'save' : 'pencil'}
@@ -91,23 +89,21 @@ const PillarDescriptionView = ({
           setIsEditing((p) => !p);
         }}
       />
-      <ModalActions>
-        <Button
-          primary
-          negative
-          loading={deleteIsLoading}
-          onClick={() => {
-            setDeleteIsLoading(true);
-            setTimeout(() => {
-              deletePillarRedux();
-              closeView();
-              setDeleteIsLoading(false);
-            }, LOADING_TIME);
-          }}
-        >
-          Delete
-        </Button>
-      </ModalActions>
+      <Button
+        primary
+        negative
+        loading={deleteIsLoading}
+        onClick={() => {
+          setDeleteIsLoading(true);
+          setTimeout(() => {
+            deletePillarRedux();
+            closeView();
+            setDeleteIsLoading(false);
+          }, LOADING_TIME);
+        }}
+      >
+        Delete
+      </Button>
     </div>
   );
 };

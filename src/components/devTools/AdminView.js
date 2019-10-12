@@ -1,4 +1,5 @@
 import React from 'react';
+import { Modal } from 'semantic-ui-react';
 
 /**
  * This is the administrative view for the app, which lets you do a lot of things
@@ -9,7 +10,11 @@ import React from 'react';
  * @return {*} JSX for the component.
  */
 const AdminView = () => {
-  return <div>ADMIN VIEW</div>;
+  return (
+    <div>
+      <Modal.Header>ADMIN VIEW</Modal.Header>
+    </div>
+  );
 };
 
 export default AdminView;
