@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Pillars/static/css/main.c02072d7.chunk.css",
-    "main.js": "/Pillars/static/js/main.c23ca26e.chunk.js",
-    "main.js.map": "/Pillars/static/js/main.c23ca26e.chunk.js.map",
+    "main.css": "/Pillars/static/css/main.fd2fd4ae.chunk.css",
+    "main.js": "/Pillars/static/js/main.f22eba23.chunk.js",
+    "main.js.map": "/Pillars/static/js/main.f22eba23.chunk.js.map",
     "runtime~main.js": "/Pillars/static/js/runtime~main.c67d1c2e.js",
     "runtime~main.js.map": "/Pillars/static/js/runtime~main.c67d1c2e.js.map",
-    "static/js/2.ba2ed078.chunk.js": "/Pillars/static/js/2.ba2ed078.chunk.js",
-    "static/js/2.ba2ed078.chunk.js.map": "/Pillars/static/js/2.ba2ed078.chunk.js.map",
+    "static/js/2.4f4d6a8e.chunk.js": "/Pillars/static/js/2.4f4d6a8e.chunk.js",
+    "static/js/2.4f4d6a8e.chunk.js.map": "/Pillars/static/js/2.4f4d6a8e.chunk.js.map",
     "index.html": "/Pillars/index.html",
-    "precache-manifest.c8d9ce05e2e8e438504ffb48d7bdc098.js": "/Pillars/precache-manifest.c8d9ce05e2e8e438504ffb48d7bdc098.js",
+    "precache-manifest.5c998c91fe13124480d184be34c61142.js": "/Pillars/precache-manifest.5c998c91fe13124480d184be34c61142.js",
     "service-worker.js": "/Pillars/service-worker.js",
-    "static/css/main.c02072d7.chunk.css.map": "/Pillars/static/css/main.c02072d7.chunk.css.map",
+    "static/css/main.fd2fd4ae.chunk.css.map": "/Pillars/static/css/main.fd2fd4ae.chunk.css.map",
     "static/media/semantic.min.css": "/Pillars/static/media/outline-icons.ef60a4f6.woff"
   }
 }
