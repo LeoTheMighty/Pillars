@@ -9,6 +9,7 @@ import {
 } from '../logic/PillarHelper';
 import type PillarSubmission from '../types/PillarSubmission';
 import PillarDescriptionView from './PillarDescriptionView';
+import { convertHexToHSL, convertHSLToCSSString, convertHSLToHex } from '../logic/ColorHelper';
 
 type Props = {
   pillar: Pillar,
@@ -57,6 +58,17 @@ const handlePillarUncheckConfirm = (
 };
 
 /**
+ * Gets the color of the shine for the pillar.
+ *
+ * @param {string} color The color as it appears in the pillar.
+ * @returns {string} The color of the shine for the pillar.
+ */
+const getShineColor = (color) => {
+  const hsl = convertHexToHSL(color);
+  return convertHSLToHex([hsl[0], hsl[1], Math.min(hsl[2] + 10, 100)]);
+};
+
+/**
  * The view that displays the specific pillar information for a single pillar
  *
  * @param {Pillar} pillar The pillar to show information for
@@ -79,11 +91,14 @@ const PillarView = ({
   const [detailModalOpen, setDetailModalOpen] = useState(false);
   const [checked, setChecked] = useState(false);
   const [value, setValue] = useState(0);
+  const [shineColor, setShineColor] = useState('white');
   const [confirmUndoModalOpen, setConfirmUndoModalOpen] = useState(false);
 
   useEffect(() => {
     setChecked(isSubmitted(pillar, now()));
-    setValue(getCurrentPillarValue(pillar, intervalView, intervalSpan));
+    // setValue(getCurrentPillarValue(pillar, intervalView, intervalSpan));
+    setValue(1);
+    setShineColor(getShineColor(pillar.color));
   }, [pillar.submissions, intervalView, checked]);
 
   return (
@@ -93,7 +108,7 @@ const PillarView = ({
         alignItems: 'center',
         justifyContent: 'center',
         // backgroundColor: pillar.color,
-        background: `linear-gradient(to bottom right, ${pillar.color}, ${pillar.color}, white, ${pillar.color}, ${pillar.color}, ${pillar.color}, ${pillar.color}, ${pillar.color}, ${pillar.color}, ${pillar.color}, ${pillar.color}, ${pillar.color}, white, ${pillar.color})`,
+        background: `linear-gradient(to bottom right, ${shineColor}, ${pillar.color}, ${pillar.color}, ${shineColor}, ${pillar.color})`,
         position: 'relative',
       }}
       role="button"
