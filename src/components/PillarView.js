@@ -96,8 +96,7 @@ const PillarView = ({
 
   useEffect(() => {
     setChecked(isSubmitted(pillar, now()));
-    // setValue(getCurrentPillarValue(pillar, intervalView, intervalSpan));
-    setValue(1);
+    setValue(getCurrentPillarValue(pillar, intervalView, intervalSpan));
     setShineColor(getShineColor(pillar.color));
   }, [pillar.submissions, intervalView, checked]);
 
