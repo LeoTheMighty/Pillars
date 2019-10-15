@@ -9,7 +9,7 @@ import {
 } from '../logic/PillarHelper';
 import type PillarSubmission from '../types/PillarSubmission';
 import PillarDescriptionView from './PillarDescriptionView';
-import { convertHexToHSL, convertHSLToCSSString, convertHSLToHex } from '../logic/ColorHelper';
+import { convertHexToHSL, convertHSLToHex } from '../logic/ColorHelper';
 
 type Props = {
   pillar: Pillar,
@@ -95,14 +95,17 @@ const PillarView = ({
   const [confirmUndoModalOpen, setConfirmUndoModalOpen] = useState(false);
 
   useEffect(() => {
-    setChecked(isSubmitted(pillar, now()));
+    setChecked(isSubmitted(pillar));
     setValue(getCurrentPillarValue(pillar, intervalView, intervalSpan));
     setShineColor(getShineColor(pillar.color));
-  }, [pillar.submissions, intervalView, checked]);
+  }, [pillar.submissions, intervalView, intervalSpan, checked]);
 
   return (
     <div
       style={{
+        'border-color': 'gray',
+        'border-style': 'ridge',
+        'border-width': 'thin',
         height: `${(value + 0.01) * 75}vh`,
         alignItems: 'center',
         justifyContent: 'center',

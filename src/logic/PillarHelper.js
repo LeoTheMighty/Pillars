@@ -8,7 +8,7 @@ import {
   yearsBefore,
   parseISOString,
   daysBetween,
-  convertToISOString,
+  convertToISOString, isSameDay, prettyPrintDate,
 } from './TimeHelper';
 
 /**
@@ -83,12 +83,17 @@ export const newSubmission = (value) => ({
  */
 export const isSubmitted = (pillar, nowDate = now()) => {
   if (pillar.submissions && pillar.submissions.length > 0) {
-    const latestSubmission = pillar.submissions[0];
-    return (
-      daysBetween(nowDate, parseISOString(latestSubmission.time_submitted)) ===
-      0
+    alert(pillar.name);
+    alert(pillar.submissions.length);
+    alert(
+      prettyPrintDate(parseISOString(pillar.submissions[0].time_submitted)),
+    );
+    return isSameDay(
+      parseISOString(pillar.submissions[0].time_submitted),
+      nowDate,
     );
   }
+  alert('No submissions');
   return false;
 };
 

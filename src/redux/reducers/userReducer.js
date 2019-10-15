@@ -10,6 +10,7 @@ import {
   REMOVE_SUBMISSION,
 } from '../typeConstants';
 import { saveUserToStorage } from '../actions/userActions';
+import { isBefore, parseISOString } from '../../logic/TimeHelper';
 
 /**
  * The type definition for the User redux reducer.
@@ -182,6 +183,15 @@ const addSubmission = (state, pillarIndex, submission) => {
       'Pillar Index not in bounds of pillars array for adding submission!',
     );
   }
+  if (pillars[pillarIndex].submissions.length > 0) {
+    if (
+      !isBefore(
+        parseISOString(pillars[pillarIndex].submissions[0].time_submitted),
+      )
+    ) {
+      throw new Error('Submission not being placed in order!');
+    }
+  }
   pillars[pillarIndex].submissions = [
     submission,
     ...pillars[pillarIndex].submissions,
@@ -210,7 +220,7 @@ const removeSubmission = (state, pillarIndex) => {
     );
   }
   pillars[pillarIndex].submissions = [...pillars[pillarIndex].submissions];
-  pillars[pillarIndex].submissions.pop();
+  pillars[pillarIndex].submissions.shift();
   return {
     ...state,
     user: {

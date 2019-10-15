@@ -13,9 +13,43 @@ export const now = () => new Date();
  */
 export const copyDate = (d) => new Date(d.getTime());
 
+/**
+ * Pretty prints the date object for better readability.
+ *
+ * @param {Date} date The date object to get the pretty print for.
+ * @return {string} The pretty printed string for the date.
+ */
+export const prettyPrintDate = (date) =>
+  date.toLocaleDateString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
 // =====================================================================================================================
 // Date Difference Management
 // =====================================================================================================================
+
+/**
+ * Returns whether the given date is the same date as today.
+ *
+ * @param {Date} date The date to query if the day is the same for.
+ * @param {Date} nowDate The date to indicate the now date.
+ * @return {boolean} Whether the day is the same date or not.
+ */
+export const isSameDay = (date, nowDate = now()) =>
+  daysBetween(date, nowDate) === 0;
+
+/**
+ * Returns whether the date is before the given now date.
+ *
+ * @param {Date} date The date to query if the day is before for.
+ * @param {Date} nowDate The date to indicate the now date.
+ * @return {boolean} Whether the day is before or not.
+ */
+export const isBefore = (date, nowDate = now()) =>
+  daysBetween(date, nowDate) > 0;
 
 /**
  * @param  {number} days The number of days before the original date
