@@ -103,7 +103,7 @@ const PillarView = ({
   return (
     <div
       style={{
-        'border-color': 'gray',
+        'border-color': 'rgb(187,187,187)',
         'border-style': 'ridge',
         'border-width': 'thin',
         height: `${(value + 0.01) * 75}vh`,
