@@ -81,7 +81,10 @@ const PillarsHeaderView = ({
                         text: 'Since Pillar Start',
                       },
                     ]}
-                    onChange={(e, { value }) => setIntervalViewRedux(value)}
+                    onChange={(e, { value }) => {
+                      setIntervalViewRedux(value);
+                      setIntervalSpanRedux(1);
+                    }}
                   />
                 </Grid.Column>
                 <Grid.Column>

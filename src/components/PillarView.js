@@ -107,6 +107,7 @@ const PillarView = ({
         'border-style': 'ridge',
         'border-width': 'thin',
         height: `${(value + 0.01) * 75}vh`,
+        transition: 'height 0.8s',
         alignItems: 'center',
         justifyContent: 'center',
         // backgroundColor: pillar.color,
