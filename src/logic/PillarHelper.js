@@ -8,7 +8,8 @@ import {
   yearsBefore,
   parseISOString,
   daysBetween,
-  convertToISOString, isSameDay, prettyPrintDate,
+  convertToISOString,
+  isSameDay,
 } from './TimeHelper';
 
 /**

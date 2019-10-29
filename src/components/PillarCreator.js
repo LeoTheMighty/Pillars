@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import {
-  Message,
-  Container,
   Button,
+  Container,
+  Divider,
+  Form,
   Grid,
   Header,
-  Form,
+  Message,
 } from 'semantic-ui-react';
-import { SketchPicker } from 'react-color';
+import { ChromePicker } from 'react-color';
 import { addPillar } from '../redux/actions/userActions';
 import { newPillar } from '../logic/PillarHelper';
 import type Pillar from '../types/Pillar';
@@ -144,52 +145,52 @@ const PillarCreator = ({ closeView, addPillarRedux }: Props) => {
             onChange={(value) => setDescription(value.target.value)}
           />
         </Header>
-        <div align="center">
-          <Container align="center">
-            <Grid centered>
-              <Grid.Row centered>
-                <Grid.Column>
-                  <div className="field">
-                    <text>Choose the color for the pillar</text>
-                    <SketchPicker
-                      color={color}
-                      onChangeComplete={(c) => setColor(c.hex)}
-                    />
-                  </div>
-                  <div>
-                    {displayError(error)}
-                    {createSuccessLabel(success)}
-                  </div>
-                </Grid.Column>
-              </Grid.Row>
-            </Grid>
-          </Container>
-        </div>
-        <div>
-          <Button
-            loading={isLoading}
-            disabled={isLoading}
-            primary
-            size="big"
-            type="button"
-            onClick={() =>
-              createPillar(
-                name,
-                description,
-                color,
-                closeView,
-                addPillarRedux,
-                setSuccess,
-                setIsLoading,
-                setError,
-              )
-            }
-          >
-            {'Submit'}
-          </Button>
-        </div>
-        {createSuccessLabel(success)}
       </Form>
+      <Header as="h5">Choose the Color</Header>
+      <ChromePicker
+        color={color}
+        onChangeComplete={(c) => setColor(c.hex)}
+        disableAlpha
+      />
+      <div align="center">
+        <Container align="center">
+          <Grid centered>
+            <Grid.Row centered>
+              <Grid.Column>
+                <div>
+                  {displayError(error)}
+                  {createSuccessLabel(success)}
+                </div>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </Container>
+      </div>
+      <Divider />
+      <div>
+        <Button
+          loading={isLoading}
+          disabled={isLoading}
+          primary
+          size="big"
+          type="button"
+          onClick={() =>
+            createPillar(
+              name,
+              description,
+              color,
+              closeView,
+              addPillarRedux,
+              setSuccess,
+              setIsLoading,
+              setError,
+            )
+          }
+        >
+          {'Submit'}
+        </Button>
+      </div>
+      {createSuccessLabel(success)}
     </div>
   );
 };

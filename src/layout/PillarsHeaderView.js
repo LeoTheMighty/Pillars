@@ -1,14 +1,6 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Breakpoint } from 'react-socks';
-import {
-  Grid,
-  Button,
-  Container,
-  Dropdown,
-  Modal,
-  Input, Label,
-} from 'semantic-ui-react';
+import { Grid, Button, Container, Modal } from 'semantic-ui-react';
 import PillarCreator from '../components/PillarCreator';
 import type { FlowReducer } from '../redux/reducers/flowReducer';
 import {
@@ -19,6 +11,7 @@ import {
   setIsChecking,
 } from '../redux/actions/flowActions';
 import { isDevelopment } from '../AppVariables';
+import PillarIntervalViewEditor from '../components/PillarIntervalViewEditor';
 
 type Props = {
   flow: FlowReducer,
@@ -65,42 +58,11 @@ const PillarsHeaderView = ({
           >
             <Modal.Header>Choose the Pillar View</Modal.Header>
             <Modal.Content>
-              <Grid columns="equal">
-                <Grid.Column>
-                  <Dropdown
-                    label="Type of interval"
-                    value={flow.currentIntervalView}
-                    selection
-                    options={[
-                      { key: 'day', value: 'day', text: 'Daily View' },
-                      { key: 'week', value: 'week', text: 'Weekly View' },
-                      { key: 'month', value: 'month', text: 'Monthly View' },
-                      {
-                        key: 'start',
-                        value: 'start',
-                        text: 'Since Pillar Start',
-                      },
-                    ]}
-                    onChange={(e, { value }) => {
-                      setIntervalViewRedux(value);
-                      setIntervalSpanRedux(1);
-                    }}
-                  />
-                </Grid.Column>
-                <Grid.Column>
-                  {flow.currentIntervalView === 'start' || [
-                    <Label color="black">{`How many ${flow.currentIntervalView}s`}</Label>,
-                    <Input
-                      value={flow.currentIntervalSpan}
-                      onChange={(e) =>
-                        e.target.value > 0 &&
-                        setIntervalSpanRedux(e.target.value)
-                      }
-                      type="number"
-                    />,
-                  ]}
-                </Grid.Column>
-              </Grid>
+              <PillarIntervalViewEditor
+                flow={flow}
+                setIntervalViewRedux={setIntervalViewRedux}
+                setIntervalSpanRedux={setIntervalSpanRedux}
+              />
             </Modal.Content>
           </Modal>
         </Grid.Column>

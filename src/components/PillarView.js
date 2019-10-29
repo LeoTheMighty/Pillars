@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Checkbox, Grid, Modal } from 'semantic-ui-react';
 import type Pillar from '../types/Pillar';
-import { now } from '../logic/TimeHelper';
 import {
   getCurrentPillarValue,
   isSubmitted,
@@ -65,7 +64,24 @@ const handlePillarUncheckConfirm = (
  */
 const getShineColor = (color) => {
   const hsl = convertHexToHSL(color);
+  if (hsl[2] > 50) {
+    return convertHSLToHex([hsl[0], hsl[1], Math.max(hsl[2] - 10, 0)]);
+  }
   return convertHSLToHex([hsl[0], hsl[1], Math.min(hsl[2] + 10, 100)]);
+};
+
+/**
+ * Gets the color for the text identifying the Pillar.
+ *
+ * @param {string} color The hex string for the color of the Pillar.
+ * @return {string} The color for the text of the pillar.
+ */
+const getTextColor = (color) => {
+  const hsl = convertHexToHSL(color);
+  if (hsl[2] > 50) {
+    return 'black';
+  }
+  return 'white';
 };
 
 /**
@@ -98,19 +114,20 @@ const PillarView = ({
     setChecked(isSubmitted(pillar));
     setValue(getCurrentPillarValue(pillar, intervalView, intervalSpan));
     setShineColor(getShineColor(pillar.color));
-  }, [pillar.submissions, intervalView, intervalSpan, checked]);
+  }, [pillar, pillar.submissions, intervalView, intervalSpan, checked]);
 
   return (
     <div
       style={{
         'border-color': 'rgb(187,187,187)',
-        'border-style': 'ridge',
+        'border-style': 'solid',
         'border-width': 'thin',
+        'border-radius': '4px',
         height: `${(value + 0.01) * 75}vh`,
         transition: 'height 0.8s',
         alignItems: 'center',
         justifyContent: 'center',
-        // backgroundColor: pillar.color,
+        color: getTextColor(pillar.color),
         background: `linear-gradient(to bottom right, ${shineColor}, ${pillar.color}, ${pillar.color}, ${shineColor}, ${pillar.color})`,
         position: 'relative',
       }}

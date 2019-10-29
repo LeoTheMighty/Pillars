@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import {
   Button,
   Form,
-  ModalActions,
-  ModalContent,
+  Grid,
   ModalHeader,
 } from 'semantic-ui-react';
+import { ChromePicker } from 'react-color';
 import type Pillar from '../types/Pillar';
 import { LOADING_TIME } from '../Constants';
 import { deepCopyPillar } from '../logic/PillarHelper';
+import { convertHexToHSL } from '../logic/ColorHelper';
 
 type Props = {
   pillar: Pillar,
@@ -17,25 +18,42 @@ type Props = {
   deletePillarRedux: () => void,
 };
 
-const generateField = (label, placeholder, value, setValue, editing) =>
-  !editing ? (
-    [
-      <ModalHeader as="h5">{label}</ModalHeader>,
-      <ModalHeader as="h2">{value}</ModalHeader>,
-    ]
-  ) : (
-    <ModalHeader as="h4">
-      <Form.Input
-        fluid
-        value={value}
-        type="text"
-        label={label}
-        name={label}
-        placeholder={placeholder}
-        onChange={(v) => setValue(v.target.value)}
-      />
-    </ModalHeader>
-  );
+const generateField = (label, placeholder, value, setValue, editing) => (
+  <Grid.Row>
+    {!editing ? (
+      [
+        <ModalHeader as="h5">{label}</ModalHeader>,
+        <ModalHeader as="h2">{value}</ModalHeader>,
+      ]
+    ) : (
+      <ModalHeader as="h4">
+        <Form.Input
+          fluid
+          value={value}
+          type="text"
+          label={label}
+          name={label}
+          placeholder={placeholder}
+          onChange={(v) => setValue(v.target.value)}
+        />
+      </ModalHeader>
+    )}
+  </Grid.Row>
+);
+
+/**
+ * Gets the color for the text identifying the Pillar.
+ *
+ * @param {string} color The hex string for the color of the Pillar.
+ * @return {string} The color for the text of the pillar.
+ */
+const getTextColor = (color) => {
+  const hsl = convertHexToHSL(color);
+  if (hsl[2] > 50) {
+    return 'black';
+  }
+  return 'white';
+};
 
 /**
  * This view displays the actual details of the specified pillar. These details include both editable attributes and the
@@ -66,7 +84,7 @@ const PillarDescriptionView = ({
     });
 
   return (
-    <div>
+    <Grid rows="equal" stretched>
       {generateField(
         'Name',
         'Name For The Pillar',
@@ -81,30 +99,54 @@ const PillarDescriptionView = ({
         (v) => setPillarValue('description', v),
         isEditing,
       )}
-      <Button
-        primary={!isEditing}
-        icon={isEditing ? 'save' : 'pencil'}
-        onClick={() => {
-          isEditing && editPillarRedux(currentPillar);
-          setIsEditing((p) => !p);
-        }}
-      />
-      <Button
-        primary
-        negative
-        loading={deleteIsLoading}
-        onClick={() => {
-          setDeleteIsLoading(true);
-          setTimeout(() => {
-            deletePillarRedux();
-            closeView();
-            setDeleteIsLoading(false);
-          }, LOADING_TIME);
-        }}
-      >
-        Delete
-      </Button>
-    </div>
+      <Grid.Row>
+        <label>Color:</label>
+        {isEditing ? (
+          <ChromePicker
+            color={currentPillar.color}
+            onChangeComplete={(c) => setPillarValue('color', c.hex)}
+            disableAlpha
+          />
+        ) : (
+          <div
+            style={{
+              background: pillar.color,
+              textAlign: 'center',
+              color: getTextColor(pillar.color),
+            }}
+          >
+            {pillar.color}
+          </div>
+        )}
+      </Grid.Row>
+      <Grid.Row>
+        <Button
+          primary={!isEditing}
+          icon={isEditing ? 'save' : 'pencil'}
+          onClick={() => {
+            isEditing && editPillarRedux(currentPillar);
+            setIsEditing((p) => !p);
+          }}
+        />
+      </Grid.Row>
+      <Grid.Row>
+        <Button
+          primary
+          negative
+          loading={deleteIsLoading}
+          onClick={() => {
+            setDeleteIsLoading(true);
+            setTimeout(() => {
+              deletePillarRedux();
+              closeView();
+              setDeleteIsLoading(false);
+            }, LOADING_TIME);
+          }}
+        >
+          Delete
+        </Button>
+      </Grid.Row>
+    </Grid>
   );
 };
 

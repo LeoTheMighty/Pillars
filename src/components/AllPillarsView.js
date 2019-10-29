@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Message } from 'semantic-ui-react';
+import { Grid, Icon, Message } from 'semantic-ui-react';
 import _ from 'lodash';
 import type Pillar from '../types/Pillar';
 import PillarView from './PillarView';
@@ -61,7 +61,11 @@ const AllPillarsView = ({
           </Grid.Column>
         ))
       ) : (
-        <Message> No Pillars Yet! </Message>
+        <Grid.Column key={1} verticalAlign="middle">
+          <Message>
+            No Pillars Yet! Press the {<Icon name="plus" />}Button to Start!
+          </Message>
+        </Grid.Column>
       )}
     </Grid>
   );
